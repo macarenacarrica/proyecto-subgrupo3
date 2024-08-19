@@ -4,6 +4,9 @@
 .site-header {
   font-family: 'Verdana', serif !important;
 }
+.imgcarrito{
+  width: 20%;
+}
 
 .jumbotron .display-4 {
   font-weight: bold;
