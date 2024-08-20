@@ -1,31 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.getElementById('loginButton');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('loginForm');
+    const alertSuccess = document.getElementById('alert-success');
+    const alertDanger = document.getElementById('alert-danger');
 
-    loginButton.addEventListener('click', () => {
-    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita el envío del formulario para manejar la validación
 
-        // Obtiene los valores de los campos
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-        // Verifica si los campos están vacíos
-        if (!username || !password) {
-            showAlertError(); // Muestra una alerta si los campos están vacíos
-            return; // Detiene la ejecución del código si los campos están vacíos
+        // Oculta ambas alertas al empezar
+        alertSuccess.classList.remove('show');
+        alertDanger.classList.remove('show');
+
+        if (username === '' || password === '') {
+            // Muestra la alerta de error si algún campo está vacío
+            alertDanger.classList.add('show');
+            alertDanger.querySelector('p').textContent = 'Debes completar todos los campos';
+        } else {
+            // Muestra la alerta de éxito (opcional) y redirige
+            alertSuccess.classList.add('show');
+            setTimeout(() => {
+                window.location.href = 'index.html';
         }
-        showAlertSuccess();
-        // Si la validación pasa, redirige a la página de inicio
-        window.location.href = '.../index.html';
     });
 });
-function showAlertSuccess() {
-    document.getElementById("alert-success").classList.add("show");
-
-}
-
-function showAlertError() {
-    document.getElementById("alert-danger").classList.add("show");
-}
-
