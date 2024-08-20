@@ -11,35 +11,12 @@
   <link href="css/styles.css" rel="stylesheet">
 
 </head>
-
-<body>
-  <style>
-    body {
-    background-image: url('img/fondo\ login.jpeg');
-    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen en la pantalla */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
-    margin: 0; /* Elimina el margen por defecto */
-    padding: 0; /* Elimina el padding por defecto */
-    color: #fff; /* Opcional: Cambia el color del texto para que contraste con el fondo */
-}
-.imgcarrito{
-  max-width: 15%;
-}
-form{
-  text-align: center;
-  color: black;
-}
-.alert {
-    display: none; /* Oculta las alertas por defecto */
+<style>
+  body{
+    background-image: url("fondo_login.jpeg");
   }
-
-  .alert.show {
-    display: block; /* Muestra la alerta cuando se añade la clase 'show' */
-  }
-
-  </style>
+</style>
+<body class="bodylogin">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -67,8 +44,7 @@ form{
   <main class="mt-5">
     <div class="container">
       <form id="loginForm">
-        <img class="imgcarrito"  src="img/carrito login.jpeg" alt="carrito">
-        <br>
+        
         <label for="username">USUARIO</label>
         <br>
         <input type="text" id="username" name="username">
@@ -102,6 +78,7 @@ form{
     <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
+ 
   <script src="js/login.js"></script>
 </body>
 
