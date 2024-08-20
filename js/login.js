@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Verifica si los campos están vacíos
         if (!username || !password) {
-            errorMessage.textContent = 'Por favor, complete todos los campos.';
+            alert = 'Por favor, complete todos los campos.';
             return; // Detiene la ejecución del código si los campos están vacíos
         }
 
