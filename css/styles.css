@@ -9,6 +9,30 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
+.login {
+background-image: url('img/fondo\ login.jpeg');
+background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+background-position: center; /* Centra la imagen en la pantalla */
+background-repeat: no-repeat; /* Evita que la imagen se repita */
+background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+margin: 0; /* Elimina el margen por defecto */
+padding: 0; /* Elimina el padding por defecto */
+color: #fff; /* Opcional: Cambia el color del texto para que contraste con el fondo */
+}
+.imgcarrito{
+max-width: 15%;
+}
+form{
+text-align: center;
+color: black;
+}
+.alert {
+display: none; /* Oculta las alertas por defecto */
+}
+
+.alert.show {
+display: block; /* Muestra la alerta cuando se añade la clase 'show' */
+}
 
 nav a {
   text-decoration: none;
