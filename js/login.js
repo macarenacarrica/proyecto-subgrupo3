@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (username === '' || password === '') {
             // Muestra la alerta de error si algún campo está vacío
             alertDanger.classList.add('show');
-            alertDanger.querySelector('p').textContent = 'Debes completar todos los campos';
         } else {
             // Muestra la alerta de éxito (opcional) y redirige
             alertSuccess.classList.add('show');

@@ -31,10 +31,14 @@ form{
   text-align: center;
   color: black;
 }
-.alert-danger{
-  color: red;
-  font-size: 0.9em;
-}
+.alert {
+    display: none; /* Oculta las alertas por defecto */
+  }
+
+  .alert.show {
+    display: block; /* Muestra la alerta cuando se añade la clase 'show' */
+  }
+
   </style>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
