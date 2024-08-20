@@ -1,27 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('loginForm');
-    const alertSuccess = document.getElementById('alert-success');
-    const alertDanger = document.getElementById('alert-danger');
+document.addEventListener("DOMContentLoaded", function() {
+    const loginForm = document.getElementById("loginForm");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const alertSuccess = document.getElementById("alert-success");
+    const alertDanger = document.getElementById("alert-danger");
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío del formulario para manejar la validación
+    loginForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
 
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
+        // Ocultar alertas
+        alertSuccess.classList.remove("show");
+        alertDanger.classList.remove("show");
 
-        // Oculta ambas alertas al empezar
-        alertSuccess.classList.remove('show');
-        alertDanger.classList.remove('show');
-
-        if (username === '' || password === '') {
-            // Muestra la alerta de error si algún campo está vacío
-            alertDanger.classList.add('show');
-            alertDanger.querySelector('p').textContent = 'Debes completar todos los campos';
+        if (username.value.trim() === "" || password.value.trim() === "") {
+            // Mostrar alerta de error
+            alertDanger.classList.add("show");
         } else {
-            // Muestra la alerta de éxito (opcional) y redirige
-            alertSuccess.classList.add('show');
-            setTimeout(() => {
-                window.location.href = 'index.html'; 
+            // Mostrar alerta de éxito
+            alertSuccess.classList.add("show");
+        }
     });
 });
 
