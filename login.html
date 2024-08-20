@@ -15,31 +15,80 @@
 <body>
   <style>
     body {
-    background-image: url('img/fondo\ login.jpeg');
-    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen en la pantalla */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
-    margin: 0; /* Elimina el margen por defecto */
-    padding: 0; /* Elimina el padding por defecto */
-    color: #fff; /* Opcional: Cambia el color del texto para que contraste con el fondo */
-}
-.imgcarrito{
-  max-width: 15%;
-}
-form{
-  text-align: center;
-  color: black;
-}
-.alert {
-    display: none; /* Oculta las alertas por defecto */
-  }
+        margin: 0;
+        padding: 0;
+        background-color: #d9ebdb;
+        font-family: Arial, sans-serif;
+    }
 
-  .alert.show {
-    display: block; /* Muestra la alerta cuando se añade la clase 'show' */
-  }
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-  </style>
+    .login-form {
+        background-color: #f5fff7;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+    }
+
+    .login-form img {
+        width: 50px;
+        margin-bottom: 20px;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #98c4a6;
+        border-radius: 5px;
+    }
+
+    .login-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #b1d1b8;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .login-form button:hover {
+        background-color: #98c4a6;
+    }
+
+    .forgot-password {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #60756b;
+        text-decoration: none;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+    .wave {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('wave.png'); /* Aquí puedes colocar la imagen de fondo de las ondas */
+        background-size: cover;
+        z-index: -1;
+    }
+</style>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -65,21 +114,16 @@ form{
     </div>
   </nav>
   <main class="mt-5">
+    <div class="wave"></div>
     <div class="container">
-      <form id="loginForm">
-        <img class="imgcarrito"  src="img/carrito login.jpeg" alt="carrito">
-        <br>
-        <label for="username">USUARIO</label>
-        <br>
-        <input type="text" id="username" name="username">
-        <br>
-        <label for="password">CONTRASEÑA</label>
-        <br>
-        <input type="password" id="password" name="password">
-        <br>
-        <button id="loginButton" type="submit">INGRESAR</button>
-        <p id="error-message" class="error"></p>
-    </form>
+        <div class="login-form">
+            <img src="carrito.png" alt="Logo">
+            <input type="text" placeholder="Usuario" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+            <a href="#" class="forgot-password">Olvidé mi contraseña</a>
+        </div>
+    </div>
   
     </div>
   </main>
