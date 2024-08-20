@@ -12,12 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Verifica si los campos están vacíos
         if (!username || !password) {
-            alert('Por favor, complete todos los campos.'); // Muestra una alerta si los campos están vacíos
+            showAlertError(); // Muestra una alerta si los campos están vacíos
             return; // Detiene la ejecución del código si los campos están vacíos
         }
-
+        showAlertSuccess();
         // Si la validación pasa, redirige a la página de inicio
         window.location.href = '.../index.html';
     });
 });
+function showAlertSuccess() {
+    document.getElementById("alert-success").classList.add("show");
+
+}
+
+function showAlertError() {
+    document.getElementById("alert-danger").classList.add("show");
+}
 
