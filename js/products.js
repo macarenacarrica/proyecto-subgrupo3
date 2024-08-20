@@ -24,12 +24,19 @@ fetch(url)
 
       // Inserta el contenido en el div
       productDiv.innerHTML = `
-        <h2>${producto.name}</h2>
-        <img src="${producto.image}" alt="${producto.name}">
-        <p>${producto.description}</p>
-        <p>Precio: ${producto.cost} ${producto.currency}</p>
-        <p>Vendidos: ${producto.soldCount}</p>
-      `;
+        <div class="producto">
+    <img src="${producto.image}" alt="${producto.name}">
+    <div class="contenido">
+        <div class="info">
+            <h2>${producto.name}</h2>
+            <p>${producto.description}</p>
+        </div>
+        <div class="detalles">
+            <p>Vendidos: ${producto.soldCount}</p>
+            <p>Precio: ${producto.cost} ${producto.currency}</p>
+        </div>
+    </div>
+</div>`;
 
       // Agrega el div al contenedor
       productList.appendChild(productDiv);

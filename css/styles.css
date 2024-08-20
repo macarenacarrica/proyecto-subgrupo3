@@ -188,3 +188,33 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.producto {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.producto img {
+  width: 150px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+  object-fit: cover;
+}
+
+.contenido {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
