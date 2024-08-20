@@ -9,8 +9,7 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
-.login {
-background-image: url('img/car1.jpg');
+.bodylogin {
 background-size: cover; /* Asegura que la imagen cubra todo el fondo */
 background-position: center; /* Centra la imagen en la pantalla */
 background-repeat: no-repeat; /* Evita que la imagen se repita */
