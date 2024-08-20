@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             // Mostrar alerta de éxito
             alertSuccess.classList.add("show");
+              // Redirigir a index.html después de un corto retraso
+              setTimeout(function() {
+                window.location.href = "index.html";
+            }, 1500); 
         }
     });
 });
