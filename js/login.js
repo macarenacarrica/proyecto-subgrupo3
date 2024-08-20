@@ -1,22 +1,25 @@
-document.getElementById('ingresoBtn').addEventListener('click', validateForm);
+document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.getElementById('loginButton');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const errorMessage = document.getElementById('error-message');
 
-function validateForm() {
-    // conseguir valores de los campos necesarios para rellenar formulario
-    const usuario = document.getElementById('nombre').value;
-    const contraseña = document.getElementById('contraseña').value;
+    loginButton.addEventListener('click', () => {
+        // Limpia el mensaje de error
+        errorMessage.textContent = '';
 
-    // check que ningún campo esté vacío
-    if (usuario === '' || contraseña === '') {
-        showAlertError();
-        return;
-    }
-    showAlertSuccess();
-}
-function showAlertSuccess() {
-    document.getElementById("alert-success").classList.add("show");
+        // Obtiene los valores de los campos
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
 
-}
+        // Verifica si los campos están vacíos
+        if (!username || !password) {
+            errorMessage.textContent = 'Por favor, complete todos los campos.';
+            return; // Detiene la ejecución del código si los campos están vacíos
+        }
 
-function showAlertError() {
-    document.getElementById("alert-danger").classList.add("show");
-}
+        // Si la validación pasa, redirige a la página de inicio
+        window.location.href = 'index.html';
+    });
+});
+
