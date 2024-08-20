@@ -13,6 +13,33 @@
 </head>
 
 <body>
+  <style>
+    body {
+    background-image: url('img/fondo\ login.jpeg');
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen en la pantalla */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el padding por defecto */
+    color: #fff; /* Opcional: Cambia el color del texto para que contraste con el fondo */
+}
+.imgcarrito{
+  max-width: 15%;
+}
+form{
+  text-align: center;
+  color: black;
+}
+.alert {
+    display: none; /* Oculta las alertas por defecto */
+  }
+
+  .alert.show {
+    display: block; /* Muestra la alerta cuando se añade la clase 'show' */
+  }
+
+  </style>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -40,6 +67,8 @@
   <main class="mt-5">
     <div class="container">
       <form id="loginForm">
+        <img class="imgcarrito"  src="img/carrito login.jpeg" alt="carrito">
+        <br>
         <label for="username">USUARIO</label>
         <br>
         <input type="text" id="username" name="username">
@@ -48,7 +77,7 @@
         <br>
         <input type="password" id="password" name="password">
         <br>
-        <button type="submit">INGRESAR</button>
+        <button id="loginButton" type="submit">INGRESAR</button>
         <p id="error-message" class="error"></p>
     </form>
   
