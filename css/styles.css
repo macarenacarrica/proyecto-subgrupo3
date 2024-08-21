@@ -18,12 +18,13 @@ margin: 0; /* Elimina el margen por defecto */
 padding: 0; /* Elimina el padding por defecto */
 color: #fff; /* Opcional: Cambia el color del texto para que contraste con el fondo */
 }
-.imgcarrito{
-max-width: 15%;
-}
 form{
 text-align: center;
+margin-top: 12%;
+margin-left: 33%;
+position: fixed;
 color: black;
+
 }
 .alert {
 display: none; /* Oculta las alertas por defecto */
