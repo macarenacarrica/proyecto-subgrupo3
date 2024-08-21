@@ -19,8 +19,7 @@ padding: 0; /* Elimina el padding por defecto */
 }
 .loginForm{
 text-align: center;
-margin-top: 12%;
-margin-left: 33%;
+margin-left: 35%;
 position: fixed;
 color: black;
 }
