@@ -193,12 +193,21 @@ a.custom-card:hover {
   display: flex;
   align-items: flex-start;
   gap: 20px;
+  border: 1px solid #ddd; /* Añade un borde alrededor de cada producto */
+  padding: 15px; /* Añade un poco de espacio interno */
+  border-radius: 8px; /* Redondea las esquinas del recuadro */
+  transition: box-shadow 0.3s ease; /* Añade una transición suave para el efecto hover */
+}
+
+.producto:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra al pasar el cursor */
 }
 
 .producto img {
   width: 150px; /* Ajusta el tamaño de la imagen */
   height: auto;
   object-fit: cover;
+  border-radius: 4px; /* Redondea las esquinas de la imagen */
 }
 
 .contenido {
@@ -217,4 +226,8 @@ a.custom-card:hover {
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
+}
+
+.conteiner2 h1 {
+  text-align: center;
 }
