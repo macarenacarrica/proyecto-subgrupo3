@@ -47,15 +47,19 @@
   </nav>
   <main class="mt-5">
     <div class="container">
-      <form class="loginForm" id="loginForm">
-        <label for="username">USUARIO</label>
+      <form id="loginForm">
+        <img id="carrito" src="carrito.png" alt="carrito">
         <br>
-        <input type="text" id="username" name="username">
+        <label for="username"> <img src="usuario.png" alt="Icono de usuario" 
+          style="width: 20px; height: 20px; vertical-align: middle; margin-bottom: 7px;">
+          USUARIO</label>
         <br>
-        <label for="password">CONTRASEÑA</label>
+        <input type="text" id="username" name="username" style="border-radius: 5px; color: rgb(4, 71, 69);">
+        <br><br>
+        <label for="password"> <img src="candado.png" alt="Icono de usuario" style="width: 20px; height: 20px; vertical-align: middle; margin-bottom: 7px;">
+          CONTRASEÑA</label>
         <br>
-        <input type="password" id="password" name="password">
-        <br>
+        <input type="password" id="password" name="password" style="border-radius: 5px; color: rgb(4, 71, 69);">
         <br>
         <button id="loginButton" type="submit">INGRESAR</button>
         <p id="error-message" class="error"></p>
