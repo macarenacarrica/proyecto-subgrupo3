@@ -12,3 +12,14 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+//Esta función irá en todos los js que quieramos proteger y sea necesario iniciar sesión
+window.onload = function() {
+    // Verificar si la sesión está activa
+    const sesionIniciada = localStorage.getItem('sesionIniciada');
+
+    if (sesionIniciada !== 'true') {
+        // Redirige a login.html si no está la sesión iniciada
+        window.location.href = 'login.html';
+    }
+};
