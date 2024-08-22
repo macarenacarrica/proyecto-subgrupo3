@@ -189,6 +189,8 @@ a.custom-card:hover {
   color: orange;
 }
 
+/* ESTILO DE PRODUCTS */
+
 .producto {
   display: flex;
   align-items: flex-start;
