@@ -269,6 +269,7 @@ footer a:hover {
   padding: 15px; /* Añade un poco de espacio interno */
   border-radius: 8px; /* Redondea las esquinas del recuadro */
   transition: box-shadow 0.3s ease; /* Añade una transición suave para el efecto hover */
+  background-color:  whitesmoke;
 }
 
 .producto:hover {
