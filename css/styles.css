@@ -211,6 +211,7 @@ a.custom-card:hover {
   color: orange;
 }
 
+
 /*Detalles del login*/
 #carrito {
   width: 180px;
@@ -256,4 +257,49 @@ footer a {
 footer a:hover {
   color: rgb(5, 67, 94);
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.896);
+}
+
+/* ESTILO DE PRODUCTS */
+
+.producto {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border: 1px solid #ddd; /* Añade un borde alrededor de cada producto */
+  padding: 15px; /* Añade un poco de espacio interno */
+  border-radius: 8px; /* Redondea las esquinas del recuadro */
+  transition: box-shadow 0.3s ease; /* Añade una transición suave para el efecto hover */
+}
+
+.producto:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra al pasar el cursor */
+}
+
+.producto img {
+  width: 150px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px; /* Redondea las esquinas de la imagen */
+}
+
+.contenido {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.conteiner2 h1 {
+  text-align: center;
 }
