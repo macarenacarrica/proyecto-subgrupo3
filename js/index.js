@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", function() {
+    // Mostrar nombre de usuario en la esquina derecha
+    const username = localStorage.getItem('username');
+    if (username) {
+        const userDisplay = document.getElementById("user-display");
+        userDisplay.textContent = `Hola, ${username}`;
+        userDisplay.style.display = "block";
+    }
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
