@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         userDisplay.textContent = `Hola, ${username}`;
         userDisplay.style.display = "block";
     }
-document.addEventListener("DOMContentLoaded", function(){
+
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
         window.location = "products.html"
