@@ -32,12 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(function() {
                     window.location.href = "index.html";
                 }, 1500); 
-                function cambiarTextoEnlace() {
-                    // Selecciona el enlace por su ID
-                    var usuario = document.getElementById("usuario");
-                    
-                    // Cambia el texto del enlace
-                    usuario.innerHTML = username.value;
+                
                 }
 
                 });
