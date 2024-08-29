@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const alertSuccess = document.getElementById("alert-success");
         const alertDanger = document.getElementById("alert-danger");
 
-        loginForm.addEventListener("submit", function(event) {
+        loginForm.addEventListener ("submit", function(event) {
             event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
 
             // Ocultar alertas
@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 alertDanger.classList.add("show");
             } else {
                 // Guardar sesión al iniciar correctamente
-                localStorage.setItem('sesionIniciada', 'true');
-                
+               localStorage.setItem('sesionIniciada', 'true');
+              
                 // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
                 
@@ -32,7 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(function() {
                     window.location.href = "index.html";
                 }, 1500); 
+         
+                }
+
+                });
             }
         });
-    }
-});
+
