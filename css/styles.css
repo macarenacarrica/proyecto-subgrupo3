@@ -304,3 +304,48 @@ footer a:hover {
 .conteiner2 h1 {
   text-align: center;
 }
+/* AJUSTA EL LOGIN*/
+
+/* Resolución estándar (1366x768 px) */
+@media (min-width: 1366px) {
+  .loginForm {
+    padding: 30px; /* Relleno más amplio para pantallas grandes */
+  }
+}
+
+/* Tableta en modo vertical (768x1024 px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .loginForm {
+    max-width: 90%;  /* Ajusta el ancho del formulario para adaptarse mejor a tabletas */
+    padding: 25px;   /* Relleno moderado para tabletas */
+    text-align: center;
+ }
+}
+
+/* Smartphone pequeño (320x568 px) */
+@media (max-width: 320px) {
+  .loginForm {
+    max-width: 100%;  /* El formulario ocupa todo el ancho disponible */
+    padding: 10px;    /* Relleno reducido para pantallas pequeñas */
+  }
+   body {
+    font-size: 14px; /* Ajuste del tamaño de fuente para pantallas pequeñas */
+  }
+}
+  
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Ajustes para mejorar */
+
+input[type="text"], input[type="password"], button {
+  width: 100%; /* Asegura que los campos y botones ocupen todo el ancho disponible */
+  margin-top: 10px; /* Espaciado entre elementos */
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+  
