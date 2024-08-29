@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 // Guardar sesión al iniciar correctamente
                localStorage.setItem('sesionIniciada', 'true');
-              localStorage.setItem('username', username.value.trim());
+              
                 
                 // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
