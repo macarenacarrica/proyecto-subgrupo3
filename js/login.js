@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const alertSuccess = document.getElementById("alert-success");
         const alertDanger = document.getElementById("alert-danger");
 
-        loginForm.addEventListener ("submit", function(event) {
+        loginForm.addEventListener("submit", function(event) {
             event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
 
             // Ocultar alertas
@@ -23,19 +23,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 alertDanger.classList.add("show");
             } else {
                 // Guardar sesión al iniciar correctamente
-               localStorage.setItem('sesionIniciada', 'true');
+                localStorage.setItem('sesionIniciada', 'true');
               
                 // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
-                
+
+                // Cambiar el texto del enlace
+                cambiarTextoEnlace();
+
                 // Redirigir a index.html después de un corto retraso
                 setTimeout(function() {
                     window.location.href = "index.html";
-                }, 1500); 
-                
-                }
-
-                });
+                }, 1500);
             }
         });
 
+        function cambiarTextoEnlace() {
+            // Selecciona el enlace por su ID
+            var usuario = document.getElementById("usuario");
+            
+            // Cambia el texto del enlace al nombre de usuario ingresado
+            usuario.innerHTML = username.value;
+        }
+    }
+});
