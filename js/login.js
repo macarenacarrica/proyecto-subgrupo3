@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Verifica si ya se ingresó
     if (localStorage.getItem('sesionIniciada') === 'true') {
-        // Cambiar el texto del enlace al nombre de usuario almacenado
-        cambiarTextoEnlace();
+    
         // Si la sesión está ingresada, redirige al inicio
         if (window.location.pathname.includes("login.html")) {
             window.location.href = "index.html";
-        }
+            }
     } else {
         // Si no hay sesión iniciada, proceder con la lógica del formulario
         const loginForm = document.getElementById("loginForm");
@@ -44,21 +43,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function cambiarTextoEnlace() {
-        // Selecciona el enlace por su ID
-        var usuario = document.getElementById("usuario");
-        // Verifica si el elemento existe
+        function cambiarTextoEnlace() {
+            // Selecciona el enlace por su IDm
+            var usuario = document.getElementById("usuario");
+             // Verifica si el elemento existe
         if (usuario) {
-            // Obtiene el nombre del usuario del almacenamiento local
-            var nombreUsuario = localStorage.getItem('nombreUsuario');
-            // Si hay un nombre de usuario almacenado, cambiar el texto del enlace
-            if (nombreUsuario) {
-                usuario.innerHTML = nombreUsuario;
-            } else {
-                console.error("No se encontró el nombre de usuario en el almacenamiento local.");
-            }
-        } else {
-            console.error("El elemento con el ID 'usuario' no se encontró en el DOM.");
+             // Obtiene el nombre del usuario del almacenamiento local
+             var nombreUsuario = localStorage.getItem('nombreUsuario');
+             // Si hay un nombre de usuario almacenado, cambiar el texto del enlace
+             if (nombreUsuario) {
+            usuario.innerHTML = nombreUsuario;
+        }
+
         }
     }
 });
