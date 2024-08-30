@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Verifica si ya se ingresó
     if (localStorage.getItem('sesionIniciada') === 'true') {
+        // Cambiar el texto del enlace al nombre de usuario almacenado
+        cambiarTextoEnlace();
         // Si la sesión está ingresada, redirige al inicio
-        window.location.href = "index.html";
+        if (window.location.pathname.includes("login.html")) {
+            window.location.href = "index.html";
+            }
     } else {
         // Si no hay sesión iniciada, proceder con la lógica del formulario
         const loginForm = document.getElementById("loginForm");
@@ -24,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 // Guardar sesión al iniciar correctamente
                 localStorage.setItem('sesionIniciada', 'true');
+                localStorage.setItem('nombreUsuario', username.value.trim());
               
                 // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
@@ -37,13 +42,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 }, 1500);
             }
         });
+    }
 
         function cambiarTextoEnlace() {
-            // Selecciona el enlace por su ID
+            // Selecciona el enlace por su IDm
             var usuario = document.getElementById("usuario");
-            
-            // Cambia el texto del enlace al nombre de usuario ingresado
-            usuario.innerHTML = username.value;
+             // Verifica si el elemento existe
+        if (usuario) {
+             // Obtiene el nombre del usuario del almacenamiento local
+             var nombreUsuario = localStorage.getItem('nombreUsuario');
+             // Si hay un nombre de usuario almacenado, cambiar el texto del enlace
+             if (nombreUsuario) {
+            usuario.innerHTML = nombreUsuario;
+        }
         }
     }
 });
