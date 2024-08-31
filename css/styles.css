@@ -307,8 +307,8 @@ footer a:hover {
 
 @media (max-width: 568px) {
 
-  .body {
-    margin: 0 auto;
+  .bodylogin {
+    margin: auto;
   }
 
     .conteiner {
@@ -317,17 +317,15 @@ footer a:hover {
       background-position: center;
       text-align: left;
     }
-    .loginForm {
+    form#loginForm{
       max-width: 100%;
       width: auto; 
       box-sizing: border-box; 
-      margin: 20% 50% 20% 20%;
-      margin-left: 18%;
+      margin-left: 1%;
     }
-    .loginForm #carrito{
-      width: 60%;
+    img#carrito{
+      width: 40%;
     }
-    
     .icono {
       width: auto; /* Ajusta el tamaño de las imágenes */
       height: auto; /* Mantiene la proporción de la imagen */
@@ -354,7 +352,7 @@ footer a:hover {
     display: block;
   }
 
-@media (min-width: 768px){
+@media (max-width: 768px){
   .loginForm{
     margin-top: 20%;
     margin-left: 30%;
