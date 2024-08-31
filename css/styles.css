@@ -304,3 +304,35 @@ footer a:hover {
 .conteiner2 h1 {
   text-align: center;
 }
+
+/* AJUSTA EL LOGIN*/
+
+@media (max-width: 568px) {
+
+  .body {
+    margin: 0 auto;
+  }
+
+    .conteiner {
+      width: 100%;
+      margin: 0%;
+      background-position: center;
+      text-align: left;
+    }
+    .loginForm {
+      max-width: 100%;
+      width: auto; 
+      box-sizing: border-box; 
+      margin: 20% 50% 25% 25%;
+    }
+    
+    .icono {
+      width: auto; /* Ajusta el tamaño de las imágenes */
+      height: auto; /* Mantiene la proporción de la imagen */
+      max-width: 100%; 
+    }
+  .mt-5 {
+    display: block;
+  }
+}
+  
