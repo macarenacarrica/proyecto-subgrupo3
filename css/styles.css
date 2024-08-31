@@ -245,10 +245,8 @@ form #carrito {
 
 /* Pie de página*/
 footer p {
-  color: rgb(255, 255, 255);
+  color: rgb(15, 15, 15);
   line-height: 4.6;
-
-
 }
 footer a {
   color: rgb(0, 174, 209);
@@ -324,15 +322,51 @@ footer a:hover {
       width: auto; 
       box-sizing: border-box; 
       margin: 20% 50% 20% 20%;
+      margin-left: 18%;
     }
+    .loginForm #carrito{
+      width: 60%;
+    }
+  }
     
     .icono {
       width: auto; /* Ajusta el tamaño de las imágenes */
       height: auto; /* Mantiene la proporción de la imagen */
       max-width: 100%; 
     }
+    .conteiner2{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info, .detalles p, .producto {
+      width: 100%;
+      margin: 0;
+      background-position: center;
+      text-align: center;
+      font-size: small;
+      display: flex; /* Si quieres que los elementos internos también se alineen de alguna manera */
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
   .mt-5 {
     display: block;
   }
+
+@media (min-width: 768px){
+  .loginForm{
+    margin-top: 20%;
+    margin-left: 30%;
+  }
+  .info, .producto{
+    width: 100%;
+    justify-content: center;
+    font-size: medium;
+  }
+  .detalles{
+    align-items: center;
+    justify-content: right;
+    text-align: right;
+  }
 }
-  
