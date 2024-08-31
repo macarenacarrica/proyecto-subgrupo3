@@ -327,7 +327,6 @@ footer a:hover {
     .loginForm #carrito{
       width: 60%;
     }
-  }
     
     .icono {
       width: auto; /* Ajusta el tamaño de las imágenes */
@@ -350,6 +349,7 @@ footer a:hover {
       display: flex;
       flex-direction: column;
     }
+  }
   .mt-5 {
     display: block;
   }
