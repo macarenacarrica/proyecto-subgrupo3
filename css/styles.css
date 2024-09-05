@@ -1,0 +1,370 @@
+.jumbotron,
+.card-body,
+.container,
+.site-header {
+  font-family: 'Verdana', serif !important;
+}
+
+
+.jumbotron .display-4 {
+  font-weight: bold;
+}
+.bodylogin {
+background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+background-position: center; /* Centra la imagen en la pantalla */
+background-repeat: no-repeat; /* Evita que la imagen se repita */
+background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+margin: 0; /* Elimina el margen por defecto */
+padding: 0; /* Elimina el padding por defecto */
+}
+.loginForm{
+text-align: center;
+margin-left: 35%;
+position: fixed;
+color: black;
+}
+.alert {
+display: none; /* Oculta las alertas por defecto */
+}
+
+.alert.show {
+display: block; /* Muestra la alerta cuando se añade la clase 'show' */
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.jumbotron {
+  height: 50vh;
+  padding: 5em inherit;
+  margin-bottom: 0;
+  background-color: #53C0FB;
+  background: url('../img/cover_back.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  text-shadow: 1px 1px 2px grey;
+}
+
+.jumbotron .lead {
+  font-size: 38px;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.site-header a {
+  color: white;
+  transition: ease-in-out color .15s;
+}
+
+.site-header .dropdown-menu a {
+  color: black;
+}
+
+.dropzone {
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+}
+
+.img-fit {
+  max-height: 100%;
+}
+
+.alert {
+  position: fixed;
+  top: 80px;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+}
+
+.cursor-active {
+  cursor: pointer;
+}
+
+.left {
+  float: left;
+  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+#spinner-wrapper {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1021;
+  display: none;
+}
+
+main {
+  min-height: calc(100vh - 210px);
+}
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.checked {
+  color: orange;
+}
+
+
+/*Detalles del login*/
+#carrito {
+  width: 180px;
+  height: auto; 
+}
+
+form #carrito {
+  margin-right: 3%;
+}
+
+#loginButton {
+  margin-top: 20px;
+  background-color: #5c9f96;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid rgb(4, 71, 69);
+  border-radius: 5px; padding: 10px 20px;
+  background-color: white;
+  color: rgb(4, 71, 69);
+  text-shadow: 1px 1px 2px rgba(4, 71, 69, 0.5);
+}
+
+#loginButton:hover {
+  background-color:  rgb(218, 222, 187);
+  transition: .7s;
+}
+
+/* Pie de página*/
+footer p {
+  color: rgb(15, 15, 15);
+  line-height: 4.6;
+}
+footer a {
+  color: rgb(0, 174, 209);
+}
+
+footer a:hover {
+  color: rgb(5, 67, 94);
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.896);
+}
+
+/* ESTILO DE PRODUCTS */
+
+.producto {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border: 1px solid #ddd; /* Añade un borde alrededor de cada producto */
+  padding: 15px; /* Añade un poco de espacio interno */
+  border-radius: 8px; /* Redondea las esquinas del recuadro */
+  transition: box-shadow 0.3s ease; /* Añade una transición suave para el efecto hover */
+  background-color:  whitesmoke;
+}
+
+.producto:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra al pasar el cursor */
+}
+
+.producto img {
+  width: 150px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px; /* Redondea las esquinas de la imagen */
+}
+
+.contenido {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.conteiner2 h1 {
+  text-align: center;
+}
+
+/* AJUSTA EL LOGIN*/
+
+@media (max-width: 568px) {
+
+  .bodylogin {
+    margin: auto;
+  }
+
+    .conteiner {
+      width: 100%;
+      margin: 0%;
+      background-position: center;
+      text-align: left;
+    }
+    form#loginForm{
+      max-width: 100%;
+      width: auto; 
+      box-sizing: border-box; 
+      margin-left: 1%;
+    }
+    img#carrito{
+      width: 40%;
+    }
+    .icono {
+      width: auto; /* Ajusta el tamaño de las imágenes */
+      height: auto; /* Mantiene la proporción de la imagen */
+      max-width: 100%; 
+    }
+    .conteiner2{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info, .detalles p, .producto {
+      width: 100%;
+      margin: 0;
+      background-position: center;
+      text-align: center;
+      font-size: small;
+      display: flex; /* Si quieres que los elementos internos también se alineen de alguna manera */
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .mt-5 {
+    display: block;
+  }
+
+@media (max-width: 768px){
+  .loginForm{
+    margin-top: 20%;
+    margin-left: 30%;
+  }
+  .info, .producto{
+    width: 100%;
+    justify-content: center;
+    font-size: medium;
+  }
+  .detalles{
+    align-items: center;
+    justify-content: right;
+    text-align: right;
+  }
+}
