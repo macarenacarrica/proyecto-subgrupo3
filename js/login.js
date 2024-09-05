@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Verifica si ya se ingresó
     if (localStorage.getItem('sesionIniciada') === 'true') {
         // Si la sesión está ingresada, redirige al inicio
-        window.location.href = "index.html";
+        if (window.location.pathname.includes("login.html")) {
+            window.location.href = "index.html";
+            }
     } else {
         // Si no hay sesión iniciada, proceder con la lógica del formulario
         const loginForm = document.getElementById("loginForm");
@@ -24,14 +26,15 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 // Guardar sesión al iniciar correctamente
                 localStorage.setItem('sesionIniciada', 'true');
-                
+                localStorage.setItem('nombreUsuario', username.value.trim());
+              
                 // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
-                
+
                 // Redirigir a index.html después de un corto retraso
                 setTimeout(function() {
                     window.location.href = "index.html";
-                }, 1500); 
+                }, 1500);
             }
         });
     }

@@ -141,3 +141,13 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+window.onload = function() {
+    // Verificar si la sesión está activa
+    const sesionIniciada = localStorage.getItem('sesionIniciada');
+
+    if (sesionIniciada !== 'true') {
+        // Redirigir a login.html si no hay sesión iniciada
+        window.location.href = 'login.html';
+    }
+};
