@@ -342,7 +342,7 @@ footer a:hover {
       background-position: center;
       text-align: center;
       font-size: small;
-      display: flex; /* Si quieres que los elementos internos se alineen de alguna manera */
+      display: flex; /* Si quieres que los elementos internos también se alineen de alguna manera */
       align-items: center;
       display: flex;
       flex-direction: column;

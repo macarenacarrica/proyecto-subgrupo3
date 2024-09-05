@@ -1,5 +1,11 @@
-// Definimos la URL donde se encuentra el archivo JSON con la colección de productos.
-const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+// Obtén el identificador de la categoría desde el almacenamiento local
+const catID = localStorage.getItem('catID');
+
+// Verifica si el identificador de la categoría está disponible en el localStorage
+if (catID) {
+  // Construye la URL usando el identificador de la categoría
+  const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+
 
 // Realiza la petición GET. Devuelve una promesa que se resuelve en la respuesta del servidor
 fetch(url)
@@ -31,25 +37,26 @@ fetch(url)
       // Se construye una plantilla de HTML utilizando literles de plantilla que permiten la inserción de valores dinámicos.
       productDiv.innerHTML = ` 
         <div class="producto">
-    <img src="${producto.image}" alt="${producto.name}">
-    <div class="contenido">
-        <div class="info">
-            <h2>${producto.name}</h2>
-            <p>${producto.description}</p>
-        </div>
-        <div class="detalles">
-            <p>Vendidos: ${producto.soldCount}</p>
-            <p>Precio: ${producto.cost} ${producto.currency}</p>
-        </div>
-    </div>
-</div>`;
+          <img src="${producto.image}" alt="${producto.name}">
+            <div class="contenido">
+              <div class="info">
+              <h2>${producto.name}</h2>
+              <p>${producto.description}</p>
+            </div>
+            <div class="detalles">
+              <p>Vendidos: ${producto.soldCount}</p>
+              <p>Precio: ${producto.cost} ${producto.currency}</p>
+            </div>
+          </div>
+        </div>`;
 
       // Agrega cada div del producto al contenedor principal 'product-list'
       productList.appendChild(productDiv);
     });
   })
-
-  // Manejo de errores. Si ocurre un error en alguna de las promesas, este bloqueo lo captura e imprime un mensaje de error en la consola.
   .catch(error => {
     console.error('Hubo un problema con la petición:', error);
   });
+} else {
+  console.error('No se encontró el identificador de categoría en el localStorage.');
+}
