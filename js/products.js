@@ -60,3 +60,38 @@ fetch(url)
 } else {
   console.error('No se encontró el identificador de categoría en el localStorage.');
 }
+const ORDER_ASC_BY_NAME = "AZ";
+const ORDER_DESC_BY_NAME = "ZA";
+const ORDER_BY_PRICE = "Precio";
+let currentCategoriesArray = [];
+let currentSortCriteria = undefined;
+let minPrice = undefined;
+let maxPrice = undefined;
+
+function sortCategories(criteria, array){
+    let result = [];
+    if (criteria === ORDER_ASC_BY_NAME) {
+        result = array.sort(function(a, b) {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0;
+        });
+    } else if (criteria === ORDER_DESC_BY_NAME) {
+        result = array.sort(function(a, b) {
+            if (a.name > b.name) { return -1; }
+            if (a.name < b.name) { return 1; }
+            return 0;
+        });
+    } else if (criteria === ORDER_BY_PRICE) {
+        result = array.sort(function(a, b) {
+            let aPrice = parseFloat(a.price);
+            let bPrice = parseFloat(b.price);
+
+            if (aPrice > bPrice) { return -1; }
+            if (aPrice < bPrice) { return 1; }
+            return 0;
+        });
+    }
+
+    return result;
+}
