@@ -58,6 +58,9 @@ fetch(url)
   .catch(error => {
     console.error('Hubo un problema con la petición:', error);
   });
+} else {
+  console.error('No se encontró el identificador de categoría en el localStorage.');
+}
 
   // Función para seleccionar el producto
 function selectProduct(productId) {
