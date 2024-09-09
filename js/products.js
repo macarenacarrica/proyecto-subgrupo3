@@ -29,20 +29,21 @@ fetch(url)
 
       // Inserta el contenido en el div
       // Se construye una plantilla de HTML utilizando literles de plantilla que permiten la inserción de valores dinámicos.
+      //Onclick para que al dar clic en un producto, se ejecute la función selectProduct
       productDiv.innerHTML = ` 
-        <div class="producto">
-    <img src="${producto.image}" alt="${producto.name}">
-    <div class="contenido">
-        <div class="info">
-            <h2>${producto.name}</h2>
-            <p>${producto.description}</p>
-        </div>
-        <div class="detalles">
-            <p>Vendidos: ${producto.soldCount}</p>
-            <p>Precio: ${producto.cost} ${producto.currency}</p>
-        </div>
-    </div>
-</div>`;
+          <div class="producto" onclick="selectProduct(${producto.id})"> 
+            <img src="${producto.image}" alt="${producto.name}">
+            <div class="contenido">
+              <div class="info">
+                <h2>${producto.name}</h2>
+                <p>${producto.description}</p>
+              </div>
+              <div class="detalles">
+                <p>Vendidos: ${producto.soldCount}</p>
+                <p>Precio: ${producto.cost} ${producto.currency}</p>
+              </div>
+            </div>
+          </div>`;
 
       // Agrega cada div del producto al contenedor principal 'product-list'
       productList.appendChild(productDiv);
@@ -53,3 +54,12 @@ fetch(url)
   .catch(error => {
     console.error('Hubo un problema con la petición:', error);
   });
+
+  // Función para seleccionar el producto
+function selectProduct(productId) {
+  // Guardar el ID del producto en el localStorage
+  localStorage.setItem('selectedProductId', productId);
+  
+  // Redirigir a la página del producto
+  window.location.href = 'product-info.html';
+}
