@@ -1,5 +1,11 @@
-// Definimos la URL donde se encuentra el archivo JSON con la colección de productos.
-const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+// Obtén el identificador de la categoría desde el almacenamiento local
+const catID = localStorage.getItem('catID');
+
+// Verifica si el identificador de la categoría está disponible en el localStorage
+if (catID) {
+  // Construye la URL usando el identificador de la categoría
+  const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+
 
 // Realiza la petición GET. Devuelve una promesa que se resuelve en la respuesta del servidor
 fetch(url)
@@ -49,8 +55,6 @@ fetch(url)
       productList.appendChild(productDiv);
     });
   })
-
-  // Manejo de errores. Si ocurre un error en alguna de las promesas, este bloqueo lo captura e imprime un mensaje de error en la consola.
   .catch(error => {
     console.error('Hubo un problema con la petición:', error);
   });
