@@ -367,3 +367,29 @@ footer a:hover {
     text-align: right;
   }
 }
+
+/*Estilos para info de los productos*/
+/* Aplica un fondo de color a toda la página o a un elemento específico */
+#product {
+  background-color: #E5FEE8; /* Color de fondo suave */
+  padding: 20px; /* Añadir algo de espacio alrededor */
+  border-radius: 10px; /* Opcional: redondear bordes */
+}
+.card {
+  border-radius: 1rem;
+  max-width: 90%;    
+}
+.imagen-principal {
+  border-radius: 1rem;      /* Bordes redondeados */
+  max-width: 90%;         /* Limitar el tamaño máximo de la imagen */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra a la imagen */
+}
+
+.button-text {
+  text-align: center;    /* Centrar el texto */
+  text-decoration: none; /* Eliminar el subrayado si fuera un enlace */
+  padding: 2rem 1rem;
+  border-radius: 2rem; /* Bordes redondeados */
+  background-color: #90AC94; /* Color de fondo similar al botón secundario */
+  color: #fff;           /* Color del texto */
+}

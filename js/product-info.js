@@ -27,41 +27,62 @@ function fetchProduct() {
 
                 // Si se encuentra el producto seleccionado, se genera el HTML para mostrarlo
                 if (selectedProduct) {
-                    // Crea un div para contener la información del producto seleccionado
-                    const productDiv = document.createElement('div');
-                    productDiv.classList.add('selectedProduct');
+                    // div contenedor principal
+                    const containerDiv = document.createElement('div');
+                    containerDiv.classList.add('container', 'text-center', 'mb-4');
 
-                    // Crea y añade la imagen del producto
+                    // Imagen del producto
                     const productImage = document.createElement('img');
-                    productImage.src = selectedProduct.image; // URL de la imagen
-                    productImage.alt = selectedProduct.name;  // Texto alternativo para la imagen
-                    productImage.classList.add('img-fluid');  // Clase para hacer la imagen responsiva
+                    productImage.src = selectedProduct.image;
+                    productImage.alt = selectedProduct.name;
+                    productImage.classList.add('img-fluid', 'mx-auto', 'd-block', 'mb-3', 'imagen-principal'); //product image es la clase para dar estilo en css
 
-                    // Crea y añade el nombre del producto
-                    const productName = document.createElement('h2');
+                    // Tarjeta para la información del producto
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('card', 'p-3','mx-auto'); // mx-auto centra la tarjeta
+                    // Cuerpo del tarjeta
+                    const cardBodyDiv = document.createElement('div');
+                    cardBodyDiv.classList.add('card-body');
+
+                    // Nombre
+                    const productName = document.createElement('h1');
+                    productName.classList.add('card-title');
                     productName.textContent = selectedProduct.name;
 
-                    // Crea y añade la descripción del producto
+                    // Descripción
                     const productDescription = document.createElement('p');
+                    productDescription.classList.add('card-text');
                     productDescription.textContent = selectedProduct.description;
 
-                    // Crea y añade el nombre de la categoría
+                    // Categoría
                     const productCategory = document.createElement('p');
+                    productCategory.classList.add('card-text', 'text-muted');
                     productCategory.textContent = `Categoría: ${data.catName}`;
+                    
 
-                    // Crea y añade el número de productos vendidos
+                    // Cantidad de vendidos con estilo de botón
                     const productSold = document.createElement('p');
-                    productSold.textContent = `Vendidos: ${selectedProduct.soldCount}`;
+                    productSold.classList.add('btn', 'btn-secondary', 'text-white', 'mb-3');
+                    productSold.classList.add('button-text'); //Clase para acceder desde css
+                    productSold.style.border = 'none'; 
+                    productSold.textContent = `Cantidad de vendidos: ${selectedProduct.soldCount}`;
 
-                    // Añade todos los elementos al div principal del producto
-                    productDiv.appendChild(productImage);
-                    productDiv.appendChild(productName);
-                    productDiv.appendChild(productCategory);
-                    productDiv.appendChild(productDescription);
-                    productDiv.appendChild(productSold);
 
-                    // Añade el div con toda la información del producto al contenedor principal
-                    productList.appendChild(productDiv);
+                    // Para añadir los elementos a la tarjeta
+                    cardBodyDiv.appendChild(productName);
+                    cardBodyDiv.appendChild(productCategory);
+                    cardBodyDiv.appendChild(productDescription);
+                    cardBodyDiv.appendChild(productSold);
+
+                    // Añadir el cuerpo de la tarjeta al la principal
+                    productCard.appendChild(cardBodyDiv);
+
+                    // Añadir la imagen y la tarjeta al contenedor principal
+                    containerDiv.appendChild(productImage);
+                    containerDiv.appendChild(productCard);
+
+                    // Añade el contenedor principal al productList
+                    productList.appendChild(containerDiv);
                 } else {
                     // Si no se encuentra el producto, muestra un mensaje de error
                     productList.textContent = "El producto seleccionado no existe.";
