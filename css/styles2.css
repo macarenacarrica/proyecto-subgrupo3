@@ -1,0 +1,49 @@
+/*Estilos para info de los productos*/
+#mainCarousel a {
+    color: #212529;
+  }
+  
+  #product {
+    padding: 20px; /* Añadir algo de espacio alrededor */
+  }
+  .card {
+    border-radius: 1rem;
+    max-width: 70%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /*Cantidad de vendidos*/
+  .product-sold {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-radius: 2rem; /* Bordes redondeados */
+    background-color: #90AC94;
+    color: #fff; /* Texto */
+  }
+  
+  
+  /* Estilos para el carrusel */
+  #mainCarousel {
+    background-color: #E5FEE8;
+  }
+  
+  #productCarousel {
+    background-color: #E5FEE8;
+    margin: 0 auto; /* Centra el carrusel */
+    max-width: 80%;
+  }
+  
+  #carousel-images {
+    border-radius: 1rem;
+    max-width: 40rem;
+    margin: 0 auto; /* Centra el carrusel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra a la imagen */
+  }
+  
+  /* Botones del carrusel */
+  #productCarousel .carousel-control-prev-icon,
+  #productCarousel .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
+    border-radius: 30%; /* Hace que los botones sean circulares */
+  }
