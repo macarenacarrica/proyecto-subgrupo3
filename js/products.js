@@ -127,3 +127,8 @@ function selectProduct(productId) {
   // Redirigir a la página del producto
   window.location.href = 'product-info.html';
 }
+  // Evento de búsqueda en tiempo real
+  searchInput.addEventListener('input', function() {
+    searchTerm = this.value;
+    showProductsList();
+});

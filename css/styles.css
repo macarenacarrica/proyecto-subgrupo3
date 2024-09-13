@@ -367,3 +367,23 @@ footer a:hover {
     text-align: right;
   }
 }
+
+/* BUSCADOR */
+
+#search-container-producto {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#search-input-producto{
+  margin: 10px;
+  padding: 5px;
+  width: 300px;
+  height: 40px;
+}
+
+#search-results-producto {
+  margin-top: 20px;
+  
+}
+
