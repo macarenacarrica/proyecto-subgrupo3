@@ -62,11 +62,12 @@ function showProductsList() {
     const sortedProducts = sortProducts(currentSortCriteria, filteredProducts);
 
     // Mostrar los productos ordenados
+    //Onclick en linea 70 para que al dar clic en un producto, se ejecute la función selectProduct
     sortedProducts.forEach(producto => {
         const productDiv = document.createElement('div');
         productDiv.className = 'product';
         productDiv.innerHTML = `
-            <div class="producto" onclick="selectProduct(${producto.id})"> 
+            <div class="producto" onclick="selectProduct(${producto.id})">  
                 <img src="${producto.image}" alt="${producto.name}">
                 <div class="contenido">
                     <div class="info">
@@ -117,3 +118,12 @@ document.getElementById("clearRangeFilter").addEventListener("click", function()
 
     showProductsList(); // Mostrar productos con filtros eliminados
 });
+
+  // Función para seleccionar el producto
+function selectProduct(productId) {
+  // Guardar el ID del producto en el localStorage
+  localStorage.setItem('selectedProductId', productId);
+  
+  // Redirigir a la página del producto
+  window.location.href = 'product-info.html';
+}
