@@ -127,8 +127,27 @@ function selectProduct(productId) {
   // Redirigir a la página del producto
   window.location.href = 'product-info.html';
 }
-  // Evento de búsqueda en tiempo real
-  searchInput.addEventListener('input', function() {
-    searchTerm = this.value;
-    showProductsList();
-});
+ 
+    // Selecciona el campo de entrada de búsqueda y el contenedor donde se mostrará el valor
+const input = document.querySelector("input#searchInput"); // Asegúrate de que el input tenga el id 'searchInput'
+const log = document.getElementById("product-list"); // Este es el contenedor donde se muestra la lista de productos
+
+// Evento para escuchar cambios en el campo de búsqueda
+input.addEventListener("input", updateValue);
+
+function updateValue(e) {
+    const searchText = e.target.value.toLowerCase(); // Obtén el valor del input y conviértelo a minúsculas
+
+    // Filtrar los productos que coincidan con el texto ingresado
+    const filteredProducts = currentProductsArray.filter(product => {
+        return product.name.toLowerCase().includes(searchText) || product.description.toLowerCase().includes(searchText);
+    });
+
+    // Llama a una función para mostrar los productos filtrados
+    showFilteredProductsList(filteredProducts);
+}
+
+// Función que muestra la lista de productos filtrados
+function showFilteredProductsList(products) {
+    log.innerHTML = ""; // Limpiar la lista actual
+};
