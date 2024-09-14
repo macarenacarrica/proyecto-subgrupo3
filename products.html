@@ -50,8 +50,10 @@
       <div class="text-center p-4">
         <h1><span id="category-name"></span></h1> <!--Encabezado-->
       </div>
-      <div class="container">
-        <div class="row">
+      <div class="search-container">
+        <input class="form-control" type="search" placeholder="Buscar productos" id="searchProductInput">
+      </div>
+         <div class="row">
           <div class="col text-end">
             <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
               <input type="radio" class="btn-check" name="options" id="sortAsc">
@@ -112,9 +114,6 @@
   <script src="js/bootstrap.bundle.min.js"></script> <!--Permite que las características interactivas de Bootstrap funcionen-->
   <script src="js/init.js"></script> <!--Archivo JS que inicia la página-->
   <script src="js/products.js" defer async></script> <!--Archivo JS que majena la lógica para mostrar los productos de la página-->
-  
-  <input placeholder="Busque su producto" name="name" />
-  <p id="product-list"></p>
 </body>
 
 </html>

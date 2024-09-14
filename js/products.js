@@ -18,8 +18,8 @@ if (catID) {
             // Inicializa currentProductsArray con los productos
             currentProductsArray = data.products;
 
-            // Muestra los productos ordenados y filtrados inicialmente
-            showProductsList();
+            // Muestra los productos al cargar la página
+            showProductsList(currentProductsArray);
         })
         .catch(error => {
             console.error('Hubo un problema con la petición:', error);
@@ -36,6 +36,7 @@ let currentSortCriteria = ORDER_ASC_BY_NAME; // Orden inicial
 let minCost = undefined;
 let maxCost = undefined;
 
+// Función para ordenar productos
 function sortProducts(criteria, array) {
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME) {
@@ -48,26 +49,17 @@ function sortProducts(criteria, array) {
     return result;
 }
 
-function showProductsList() {
+// Función que muestra los productos en la página
+function showProductsList(products) {
     const productList = document.getElementById('product-list');
     productList.innerHTML = ""; // Limpiar la lista actual
 
-    // Filtrar productos según el rango de precios
-    const filteredProducts = currentProductsArray.filter(product => {
-        return (!minCost || product.cost >= minCost) &&
-               (!maxCost || product.cost <= maxCost);
-    });
-
-    // Ordenar los productos filtrados
-    const sortedProducts = sortProducts(currentSortCriteria, filteredProducts);
-
-    // Mostrar los productos ordenados
-    //Onclick en linea 70 para que al dar clic en un producto, se ejecute la función selectProduct
-    sortedProducts.forEach(producto => {
+    // Mostrar los productos
+    products.forEach(producto => {
         const productDiv = document.createElement('div');
         productDiv.className = 'product';
         productDiv.innerHTML = `
-            <div class="producto" onclick="selectProduct(${producto.id})">  
+            <div class="producto" onclick="selectProduct(${producto.id})">
                 <img src="${producto.image}" alt="${producto.name}">
                 <div class="contenido">
                     <div class="info">
@@ -80,14 +72,22 @@ function showProductsList() {
                     </div>
                 </div>
             </div>`;
-
         productList.appendChild(productDiv);
     });
 }
 
+// Función para ordenar y mostrar productos
 function sortAndShowProducts(sortCriteria) {
     currentSortCriteria = sortCriteria;
-    showProductsList();
+
+    // Filtrar productos según el rango de precios
+    const filteredProducts = currentProductsArray.filter(product => {
+        return (!minCost || product.cost >= minCost) &&
+               (!maxCost || product.cost <= maxCost);
+    });
+
+    const sortedProducts = sortProducts(currentSortCriteria, filteredProducts);
+    showProductsList(sortedProducts);
 }
 
 // Configuración de eventos para ordenamiento y filtrado
@@ -106,7 +106,7 @@ document.getElementById("sortByCost").addEventListener("click", function() {
 document.getElementById("rangeFilterCost").addEventListener("click", function() {
     minCost = parseFloat(document.getElementById("rangeFilterCostMin").value) || undefined;
     maxCost = parseFloat(document.getElementById("rangeFilterCostMax").value) || undefined;
-    showProductsList(); // Mostrar productos con nuevo rango de precios
+    sortAndShowProducts(currentSortCriteria); // Mostrar productos con nuevo rango de precios
 });
 
 document.getElementById("clearRangeFilter").addEventListener("click", function() {
@@ -116,38 +116,27 @@ document.getElementById("clearRangeFilter").addEventListener("click", function()
     minCost = undefined;
     maxCost = undefined;
 
-    showProductsList(); // Mostrar productos con filtros eliminados
+    sortAndShowProducts(currentSortCriteria); // Mostrar productos con filtros eliminados
 });
 
-  // Función para seleccionar el producto
+// Función para seleccionar el producto
 function selectProduct(productId) {
-  // Guardar el ID del producto en el localStorage
-  localStorage.setItem('selectedProductId', productId);
-  
-  // Redirigir a la página del producto
-  window.location.href = 'product-info.html';
+    // Guardar el ID del producto en el localStorage
+    localStorage.setItem('selectedProductId', productId);
+    // Redirigir a la página del producto
+    window.location.href = 'product-info.html';
 }
- 
-    // Selecciona el campo de entrada de búsqueda y el contenedor donde se mostrará el valor
-const input = document.querySelector("input#searchInput"); // Asegúrate de que el input tenga el id 'searchInput'
-const log = document.getElementById("product-list"); // Este es el contenedor donde se muestra la lista de productos
 
-// Evento para escuchar cambios en el campo de búsqueda
-input.addEventListener("input", updateValue);
+// Búsqueda en tiempo real (esto debe estar separado de showProductsList)
+document.getElementById("searchProductInput").addEventListener("input", function(e) {
+    const searchTerm = e.target.value.toLowerCase();
 
-function updateValue(e) {
-    const searchText = e.target.value.toLowerCase(); // Obtén el valor del input y conviértelo a minúsculas
-
-    // Filtrar los productos que coincidan con el texto ingresado
+    // Filtrar productos en base al nombre o la descripción
     const filteredProducts = currentProductsArray.filter(product => {
-        return product.name.toLowerCase().includes(searchText) || product.description.toLowerCase().includes(searchText);
+        return product.name.toLowerCase().includes(searchTerm) || 
+               product.description.toLowerCase().includes(searchTerm);
     });
 
-    // Llama a una función para mostrar los productos filtrados
-    showFilteredProductsList(filteredProducts);
-}
-
-// Función que muestra la lista de productos filtrados
-function showFilteredProductsList(products) {
-    log.innerHTML = ""; // Limpiar la lista actual
-};
+    // Mostrar productos filtrados
+    showProductsList(filteredProducts);
+});
