@@ -47,9 +47,51 @@
     </div>
   </nav>
   <main class="pb-5 container">
+      <div class="text-center p-4">
+        <h1><span id="category-name"></span></h1> <!--Encabezado-->
+      </div>
+      <div class="search-container">
+        <input class="form-control" type="search" placeholder="Buscar productos" id="searchProductInput">
+      </div>
+         <div class="row">
+          <div class="col text-end">
+            <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+              <input type="radio" class="btn-check" name="options" id="sortAsc">
+              <label class="btn btn-light" for="sortAsc">A-Z</label>
+              <input type="radio" class="btn-check" name="options" id="sortDesc">
+              <label class="btn btn-light" for="sortDesc">Z-A</label>
+              <input type="radio" class="btn-check" name="options" id="sortByCost" checked>
+              <label class="btn btn-light" for="sortByCost"><i class="fas fa-sort-amount-down mr-1"></i></label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+            <div class="row container p-0 m-0">
+              <div class="col">
+                <p class="font-weight-normal text-end my-2">Precio</p>
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin">
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax">
+              </div>
+              <div class="col-3 p-0">
+                <div class="btn-group" role="group">
+                  <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
+                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="list-group" id="cat-list-container">
+          </div>
+        </div>
+      </div>
     <div class="conteiner2">
-      <h1><span id="category-name"></span></h1> <!--Encabezado-->
-      <br>
     <div id="product-list"></div> <!--Contenedor donde se muestran los productos-->
     </div>
   </main>
@@ -71,7 +113,7 @@
   </div>
   <script src="js/bootstrap.bundle.min.js"></script> <!--Permite que las características interactivas de Bootstrap funcionen-->
   <script src="js/init.js"></script> <!--Archivo JS que inicia la página-->
-  <script src="js/products.js"></script> <!--Archivo JS que majena la lógica para mostrar los productos de la página-->
+  <script src="js/products.js" defer async></script> <!--Archivo JS que majena la lógica para mostrar los productos de la página-->
 </body>
 
 </html>

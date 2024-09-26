@@ -211,7 +211,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-
 /*Detalles del login*/
 #carrito {
   width: 180px;
@@ -321,10 +320,7 @@ footer a:hover {
       max-width: 100%;
       width: auto; 
       box-sizing: border-box; 
-      margin-left: 1%;
-    }
-    img#carrito{
-      width: 40%;
+      margin: 20% 50% 20% 20%;
     }
     .icono {
       width: auto; /* Ajusta el tamaño de las imágenes */
@@ -342,7 +338,7 @@ footer a:hover {
       background-position: center;
       text-align: center;
       font-size: small;
-      display: flex; /* Si quieres que los elementos internos se alineen de alguna manera */
+      display: flex; /* Si quieres que los elementos internos también se alineen de alguna manera */
       align-items: center;
       display: flex;
       flex-direction: column;
@@ -368,3 +364,23 @@ footer a:hover {
     text-align: right;
   }
 }
+
+/* BUSCADOR*/
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; 
+  width: 100%;
+}
+
+#searchProductInput {
+  width: 50%; 
+  padding: 10px; 
+  font-size: 14px; 
+  border: 1px solid #ccc;
+  border-radius: 10px; 
+  -moz-box-sizing: border-box; /* para que el padding no afecte el tamañao*/
+}
+
+
