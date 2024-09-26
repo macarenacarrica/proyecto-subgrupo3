@@ -64,6 +64,8 @@ function fetchProduct() {
                     productSold.classList.add('btn', 'btn-secondary', 'text-white', 'mb-3', 'product-sold');
                     productSold.textContent = `Cantidad de vendidos: ${data.soldCount}`;
 
+
+
                     cardBodyDiv.appendChild(productName);
                     cardBodyDiv.appendChild(productCategory);
                     cardBodyDiv.appendChild(productDescription);
