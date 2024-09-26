@@ -70,6 +70,54 @@ function fetchProduct() {
                     cardBodyDiv.appendChild(productSold);
                     productCard.appendChild(cardBodyDiv);
                     productList.appendChild(productCard);
+                     // Sección para productos relacionados
+                     const relatedProductsDiv = document.createElement('div');
+                     relatedProductsDiv.classList.add('related-products', 'mt-4');
+ 
+                     // Añadir título para productos relacionados
+                     const relatedTitle = document.createElement('h2');
+                     relatedTitle.textContent = "Productos Relacionados:";
+                     relatedProductsDiv.appendChild(relatedTitle);
+ 
+                     // Contenedor para las imágenes de productos relacionados
+                     const relatedImagesDiv = document.createElement('div');
+                     relatedImagesDiv.classList.add('d-flex', 'flex-wrap', 'justify-content-start');
+ 
+                     if (data.relatedProducts && data.relatedProducts.length > 0) {
+                         data.relatedProducts.forEach(relatedProduct => {
+                             const relatedCard = document.createElement('div');
+                             relatedCard.classList.add('card', 'm-2', 'text-center', 'small-card');
+                             relatedCard.style.width = '300px'; // Ajusta el ancho de la tarjeta
+ 
+                             // Añade un evento de clic para redirigir al producto relacionado
+                             relatedCard.addEventListener('click', () => {
+                                 localStorage.setItem("selectedProductId", relatedProduct.id);
+                                 window.location.reload(); // Recargar la página para mostrar el producto seleccionado
+                             });
+ 
+                             const relatedImg = document.createElement('img');
+                             relatedImg.src = relatedProduct.image; // Asegúrate de que el objeto relacionado tiene la propiedad 'image'
+                             relatedImg.classList.add('card-img-top', 'img-fluid');
+                             relatedImg.alt = relatedProduct.name;
+ 
+                             const relatedCardBody = document.createElement('div');
+                             relatedCardBody.classList.add('card-body');
+ 
+                             const relatedProductName = document.createElement('h5');
+                             relatedProductName.classList.add('card-title', 'small-card-title');
+                             relatedProductName.textContent = relatedProduct.name;
+ 
+                             relatedCardBody.appendChild(relatedProductName);
+                             relatedCard.appendChild(relatedImg);
+                             relatedCard.appendChild(relatedCardBody);
+                             relatedImagesDiv.appendChild(relatedCard); // Agregar al contenedor de imágenes
+                         });
+                     } else {
+                         relatedImagesDiv.textContent = "No hay productos relacionados disponibles.";
+                     }
+ 
+                     relatedProductsDiv.appendChild(relatedImagesDiv); // Agregar el contenedor de imágenes al div de productos relacionados
+                     productList.appendChild(relatedProductsDiv);
                 } else {
                     productList.textContent = "El producto seleccionado no existe.";
                 }
