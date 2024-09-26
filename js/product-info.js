@@ -96,7 +96,7 @@ function fetchProduct() {
                              });
  
                              const relatedImg = document.createElement('img');
-                             relatedImg.src = relatedProduct.image; // Asegúrate de que el objeto relacionado tiene la propiedad 'image'
+                             relatedImg.src = relatedProduct.image; 
                              relatedImg.classList.add('card-img-top', 'img-fluid');
                              relatedImg.alt = relatedProduct.name;
  
