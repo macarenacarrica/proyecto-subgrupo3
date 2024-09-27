@@ -134,3 +134,73 @@ function fetchProduct() {
 
 // Ejecuta la función fetchProduct cuando el contenido del DOM se ha cargado
 document.addEventListener('DOMContentLoaded', fetchProduct);
+
+// Función para obtener y mostrar los comentarios del producto
+function fetchProductComments() {
+    const selectedProductId = localStorage.getItem("selectedProductId");  // Obtener el ID del producto
+
+    if (selectedProductId) {
+        const commentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${selectedProductId}.json`;
+
+        fetch(commentsUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la petición de comentarios');
+                }
+                return response.json();
+            })
+            .then(comments => {
+                const commentsList = document.getElementById('comments-list');
+
+                commentsList.innerHTML = '';  // Limpia los comentarios anteriores
+
+                if (comments && comments.length > 0) {
+                    comments.forEach(comment => {
+                        const commentCard = document.createElement('div');
+                        commentCard.classList.add('card', 'm-2', 'p-3', 'w-75', 'mx-auto'); // Ajustar tamaño y centrar
+
+                        const user = document.createElement('h5');
+                        user.classList.add('card-title', 'text-center'); // Centrar el nombre del usuario
+                        user.textContent = comment.user;
+
+                        const description = document.createElement('p');
+                        description.classList.add('card-text', 'text-center'); // Centrar el comentario
+                        description.textContent = comment.description;
+
+                        // Crear el elemento para las estrellas
+                        const scoreDiv = document.createElement('div');
+                        scoreDiv.classList.add('text-center'); // Centrar la puntuación
+
+                        // Generar estrellas
+                        for (let i = 1; i <= 5; i++) {
+                            const star = document.createElement('i');
+                            star.classList.add('fa', i <= comment.score ? 'fa-star' : 'fa-star-o'); // Llenar o vaciar según la puntuación
+                            scoreDiv.appendChild(star);
+                        }
+
+                        const dateTime = document.createElement('p');
+                        dateTime.classList.add('card-text', 'small', 'text-muted', 'text-center'); // Centrar la fecha
+                        dateTime.textContent = `Fecha: ${new Date(comment.dateTime).toLocaleString()}`;
+
+                        // Agregar elementos a la tarjeta de comentario
+                        commentCard.appendChild(user);
+                        commentCard.appendChild(description);
+                        commentCard.appendChild(scoreDiv); // Agregar la sección de estrellas
+                        commentCard.appendChild(dateTime);
+
+                        // Agregar la tarjeta de comentario a la lista
+                        commentsList.appendChild(commentCard);
+                    });
+                } else {
+                    commentsList.textContent = "No hay comentarios disponibles para este producto.";
+                }
+            })
+            .catch(error => {
+                console.error('Hubo un problema con la petición de comentarios:', error);
+            });
+    } else {
+        console.error('No se encontró el ID del producto en el localStorage.');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', fetchProductComments);
