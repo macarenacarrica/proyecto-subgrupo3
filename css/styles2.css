@@ -47,3 +47,10 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
     border-radius: 30%; /* Hace que los botones sean circulares */
   }
+
+  .checked {
+    color: orange;
+  }
+  .fa-star {
+    cursor: pointer;
+  }
