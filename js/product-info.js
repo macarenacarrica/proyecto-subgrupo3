@@ -64,29 +64,13 @@ function fetchProduct() {
                     productSold.classList.add('btn', 'btn-secondary', 'text-white', 'mb-3', 'product-sold');
                     productSold.textContent = `Cantidad de vendidos: ${data.soldCount}`;
 
-                    // Aquí se añade el calificador de estrellas
-                    const starRatingDiv = document.createElement('div');
-                    starRatingDiv.id = 'Califica';
-                    starRatingDiv.innerHTML = `
-                        <h2>Califica</h2>
-                        <span class="fa fa-star checked" data-value="1"></span>
-                        <span class="fa fa-star checked" data-value="2"></span>
-                        <span class="fa fa-star checked" data-value="3"></span>
-                        <span class="fa fa-star" data-value="4"></span>
-                        <span class="fa fa-star" data-value="5"></span>
-                    `;
-
                     cardBodyDiv.appendChild(productName);
                     cardBodyDiv.appendChild(productCategory);
                     cardBodyDiv.appendChild(productDescription);
                     cardBodyDiv.appendChild(productSold);
                     productCard.appendChild(cardBodyDiv);
-                    productList.appendChild(productCard);
-                    cardBodyDiv.appendChild(starRatingDiv); // Añadir el calificador aquí
+                    productList.appendChild(productCard)
 
-                    
-                // Llamar a la función de calificación con estrellas
-                setupCalifica();
 
                 } else {
                     productList.textContent = "El producto seleccionado no existe.";
@@ -100,25 +84,5 @@ function fetchProduct() {
     }
 }
 
-// Función para configurar el calificador de estrellas
-function setupCalifica() {
-    const stars = document.querySelectorAll('#Califica .fa-star');
-
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            const rating = star.getAttribute('data-value');
-            
-            // Resetea todas las estrellas
-            stars.forEach(s => s.classList.remove('checked'));
-            
-            // Aplica la clase 'checked' a las estrellas seleccionadas
-            for (let i = 0; i < rating; i++) {
-                stars[i].classList.add('checked');
-            }
-
-            console.log(`Has calificado con ${rating} estrellas`);
-        });
-    });
-}
 // Ejecuta la función fetchProduct cuando el contenido del DOM se ha cargado
 document.addEventListener('DOMContentLoaded', fetchProduct);

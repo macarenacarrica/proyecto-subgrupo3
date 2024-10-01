@@ -48,9 +48,4 @@
     border-radius: 30%; /* Hace que los botones sean circulares */
   }
 
-  .checked {
-    color: orange;
-  }
-  .fa-star {
-    cursor: pointer;
-  }
+ 
