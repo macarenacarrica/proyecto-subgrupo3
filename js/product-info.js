@@ -135,12 +135,24 @@ function fetchProduct() {
 
 // Función para generar dinámicamente el calificador de estrellas y la pantalla de calificación
 function setupQualify() {
-    const qualifiDiv = document.getElementById('qualify');
+    const qualifyDiv = document.getElementById('qualify');
 
-    // Crea el título
-    const title = document.createElement('h2');
-    title.textContent = 'Realice su comentario';
-    qualifiDiv.appendChild(title);
+    // Crea el título del cuadro de texto
+    const title1 = document.createElement('h1');
+    title1.textContent = 'Realice su comentario';
+    qualifyDiv.appendChild(title1);  
+
+    // Crea el cuadro de texto
+    const textBox = document.createElement('textarea');
+    textBox.placeholder = 'Escribe tu comentario aquí';
+    textBox.rows = 4;  // Ajusta el número de filas según sea necesario
+    textBox.cols = 50; // Ajusta el número de columnas según sea necesario
+    qualifyDiv.appendChild(textBox);
+
+    // Crea el título del contenedor de estrellas
+    const title2 = document.createElement('h2');  
+    title2.textContent = '¿Cuántas estrellas le das a este producto?';
+    qualifyDiv.appendChild(title2);  
 
     // Crea el contenedor de estrellas
     const starsContainer = document.createElement('div');
@@ -156,16 +168,16 @@ function setupQualify() {
         star.setAttribute('data-value', i);
         starsContainer.appendChild(star);
     }
-    qualifiDiv.appendChild(starsContainer);
+    qualifyDiv.appendChild(starsContainer);  
 
     // Crea el texto que mostrará la calificación
     const ratingText = document.createElement('p');
     ratingText.innerHTML = 'Has calificado con <span id="rating-display">0</span> estrellas.';
-    qualifiDiv.appendChild(ratingText);
+    qualifyDiv.appendChild(ratingText);
 
     // Ahora configura el evento de clic para las estrellas
     const stars = starsContainer.querySelectorAll('.fa-star');
-    const ratingDisplay = qualifiDiv.querySelector('#rating-display');
+    const ratingDisplay = qualifyDiv.querySelector('#rating-display');
 
     stars.forEach(star => {
         star.addEventListener('click', () => {
@@ -185,6 +197,12 @@ function setupQualify() {
             console.log(`Has calificado con ${rating} estrellas`);
         });
     });
+
+    // Botón de enviar 
+    const sendButton = document.createElement('button');
+    sendButton.textContent = 'Enviar';
+    sendButton.type = 'submit'; 
+    qualifyDiv.appendChild(sendButton);  
 }
 
 // Asegúrate de que la función se ejecute cuando el DOM esté completamente cargado
