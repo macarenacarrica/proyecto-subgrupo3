@@ -288,3 +288,4 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProductComments(); // Llamar a la función para obtener comentarios del producto
 });
 
+
