@@ -5,6 +5,10 @@
   
   #product {
     padding: 20px; /* Añadir algo de espacio alrededor */
+    border-radius: 1rem;
+    max-width: 70%;
+    text-align: center;
+    margin: 0 auto;
   }
   .card {
     border-radius: 1rem;
@@ -46,4 +50,21 @@
   #productCarousel .carousel-control-next-icon {
     background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
     border-radius: 30%; /* Hace que los botones sean circulares */
+  }
+
+
+  /* Calificador estrellas */
+
+  #qualify {
+    border-radius: 1rem;
+    max-width: 70%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .checked {
+    color: orange;
+  }
+  .fa-star {
+    cursor: pointer;
   }

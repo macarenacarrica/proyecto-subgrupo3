@@ -72,6 +72,7 @@ function fetchProduct() {
                     cardBodyDiv.appendChild(productSold);
                     productCard.appendChild(cardBodyDiv);
                     productList.appendChild(productCard);
+
                      // Sección para productos relacionados
                      const relatedProductsDiv = document.createElement('div');
                      relatedProductsDiv.classList.add('related-products', 'mt-4');
@@ -131,6 +132,81 @@ function fetchProduct() {
         console.error('No se encontró el ID del producto en el localStorage.');
     }
 }
+
+// Función para generar dinámicamente el calificador de estrellas y la pantalla de calificación
+function setupQualify() {
+    const qualifyDiv = document.getElementById('qualify');
+
+    // Crea el título del cuadro de texto
+    const title1 = document.createElement('h1');
+    title1.textContent = 'Realice su comentario';
+    qualifyDiv.appendChild(title1);  
+
+    // Crea el cuadro de texto
+    const textBox = document.createElement('textarea');
+    textBox.placeholder = 'Escribe tu comentario aquí';
+    textBox.rows = 4;  // Ajusta el número de filas según sea necesario
+    textBox.cols = 50; // Ajusta el número de columnas según sea necesario
+    qualifyDiv.appendChild(textBox);
+
+    // Crea el título del contenedor de estrellas
+    const title2 = document.createElement('h2');  
+    title2.textContent = '¿Cuántas estrellas le das a este producto?';
+    qualifyDiv.appendChild(title2);  
+
+    // Crea el contenedor de estrellas
+    const starsContainer = document.createElement('div');
+    starsContainer.classList.add('stars-container');
+
+    // Crea las estrellas y las añade al contenedor
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.classList.add('fa', 'fa-star');
+        if (i <= 3) {
+            star.classList.add('checked'); // Añade la clase 'checked' a las primeras 3 estrellas
+        }
+        star.setAttribute('data-value', i);
+        starsContainer.appendChild(star);
+    }
+    qualifyDiv.appendChild(starsContainer);  
+
+    // Crea el texto que mostrará la calificación
+    const ratingText = document.createElement('p');
+    ratingText.innerHTML = 'Has calificado con <span id="rating-display">0</span> estrellas.';
+    qualifyDiv.appendChild(ratingText);
+
+    // Ahora configura el evento de clic para las estrellas
+    const stars = starsContainer.querySelectorAll('.fa-star');
+    const ratingDisplay = qualifyDiv.querySelector('#rating-display');
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value');
+            
+            // Resetea todas las estrellas
+            stars.forEach(s => s.classList.remove('checked'));
+            
+            // Aplica la clase 'checked' a las estrellas seleccionadas
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('checked');
+            }
+
+            // Actualiza la calificación mostrada en pantalla
+            ratingDisplay.textContent = rating;
+
+            console.log(`Has calificado con ${rating} estrellas`);
+        });
+    });
+
+    // Botón de enviar 
+    const sendButton = document.createElement('button');
+    sendButton.textContent = 'Enviar';
+    sendButton.type = 'submit'; 
+    qualifyDiv.appendChild(sendButton);  
+}
+
+// Asegúrate de que la función se ejecute cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', setupQualify);
 
 
 // Función para obtener y mostrar los comentarios del producto
@@ -229,4 +305,5 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProduct(); // Llamar a la función para obtener detalles del producto
     fetchProductComments(); // Llamar a la función para obtener comentarios del producto
 });
+
 
