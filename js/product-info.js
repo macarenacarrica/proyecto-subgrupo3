@@ -89,7 +89,7 @@ function fetchProduct() {
                      if (data.relatedProducts && data.relatedProducts.length > 0) {
                          data.relatedProducts.forEach(relatedProduct => {
                              const relatedCard = document.createElement('div');
-                             relatedCard.classList.add('card', 'm-2', 'text-center', 'small-card');
+                             relatedCard.classList.add('card', 'm-2', 'mx-auto', 'text-center', 'small-card');
                              relatedCard.style.width = '300px'; // Ajusta el ancho de la tarjeta
  
                              // Añade un evento de clic para redirigir al producto relacionado
@@ -139,20 +139,19 @@ function setupQualify() {
 
     // Crea el título del cuadro de texto
     const title1 = document.createElement('h1');
-    title1.textContent = 'Realice su comentario';
+    title1.textContent = 'Contanos tu experiencia';
     qualifyDiv.appendChild(title1);  
 
     // Crea el cuadro de texto
     const textBox = document.createElement('textarea');
-    textBox.placeholder = 'Escribe tu comentario aquí';
-    textBox.rows = 4;  // Ajusta el número de filas según sea necesario
+    textBox.placeholder = 'Escribe aquí';
+    textBox.rows = 3;  // Ajusta el número de filas según sea necesario
     textBox.cols = 50; // Ajusta el número de columnas según sea necesario
+    textBox.maxLength = 130;
+    textBox.style.resize = 'none'; 
     qualifyDiv.appendChild(textBox);
 
-    // Crea el título del contenedor de estrellas
-    const title2 = document.createElement('h2');  
-    title2.textContent = '¿Cuántas estrellas le das a este producto?';
-    qualifyDiv.appendChild(title2);  
+    
 
     // Crea el contenedor de estrellas
     const starsContainer = document.createElement('div');
@@ -203,6 +202,7 @@ function setupQualify() {
     sendButton.textContent = 'Enviar';
     sendButton.type = 'submit'; 
     qualifyDiv.appendChild(sendButton);  
+    sendButton.classList.add('button-custom');
 }
 
 // Asegúrate de que la función se ejecute cuando el DOM esté completamente cargado
