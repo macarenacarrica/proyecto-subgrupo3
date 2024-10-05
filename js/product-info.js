@@ -89,7 +89,7 @@ function fetchProduct() {
                      if (data.relatedProducts && data.relatedProducts.length > 0) {
                          data.relatedProducts.forEach(relatedProduct => {
                              const relatedCard = document.createElement('div');
-                             relatedCard.classList.add('card', 'm-2', 'mx-auto', 'text-center', 'small-card');
+                             relatedCard.classList.add('card', 'm-2', 'text-center', 'small-card');
                              relatedCard.style.width = '300px'; // Ajusta el ancho de la tarjeta
  
                              // Añade un evento de clic para redirigir al producto relacionado
@@ -139,17 +139,20 @@ function setupQualify() {
 
     // Crea el título del cuadro de texto
     const title1 = document.createElement('h1');
-    title1.textContent = 'Contanos tu experiencia';
+    title1.textContent = 'Realice su comentario';
     qualifyDiv.appendChild(title1);  
 
     // Crea el cuadro de texto
     const textBox = document.createElement('textarea');
-    textBox.placeholder = 'Escribe aquí';
-    textBox.rows = 3;  // Ajusta el número de filas según sea necesario
+    textBox.placeholder = 'Escribe tu comentario aquí';
+    textBox.rows = 4;  // Ajusta el número de filas según sea necesario
     textBox.cols = 50; // Ajusta el número de columnas según sea necesario
-    textBox.maxLength = 130;
-    textBox.style.resize = 'none'; 
     qualifyDiv.appendChild(textBox);
+
+    // Crea el título del contenedor de estrellas
+    const title2 = document.createElement('h2');  
+    title2.textContent = '¿Cuántas estrellas le das a este producto?';
+    qualifyDiv.appendChild(title2);  
 
     // Crea el contenedor de estrellas
     const starsContainer = document.createElement('div');
@@ -175,96 +178,33 @@ function setupQualify() {
     // Ahora configura el evento de clic para las estrellas
     const stars = starsContainer.querySelectorAll('.fa-star');
     const ratingDisplay = qualifyDiv.querySelector('#rating-display');
-    let selectedRating = 0;
-  
-      // Evento para seleccionar las estrellas
-      stars.forEach(star => {
-          star.addEventListener('click', () => {
-              const rating = star.getAttribute('data-value');
-              selectedRating = rating;
-  
-              // Resetea todas las estrellas
-              stars.forEach(s => s.classList.remove('checked'));
-  
-              // Aplica la clase 'checked' a las estrellas seleccionadas
-              for (let i = 0; i < rating; i++) {
-                  stars[i].classList.add('checked');
-              }
-  
-               // Actualiza la calificación mostrada en pantalla
-              ratingDisplay.textContent = rating;
-              console.log(`Has calificado con ${rating} estrellas`);
-          });
-      });
 
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value');
+            
+            // Resetea todas las estrellas
+            stars.forEach(s => s.classList.remove('checked'));
+            
+            // Aplica la clase 'checked' a las estrellas seleccionadas
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('checked');
+            }
+
+            // Actualiza la calificación mostrada en pantalla
+            ratingDisplay.textContent = rating;
+
+            console.log(`Has calificado con ${rating} estrellas`);
+        });
+    });
 
     // Botón de enviar 
     const sendButton = document.createElement('button');
     sendButton.textContent = 'Enviar';
     sendButton.type = 'submit'; 
     qualifyDiv.appendChild(sendButton);  
-    sendButton.classList.add('button-custom');
-
-
-// Evento click del botón de enviar
-sendButton.addEventListener('click', () => {
-    const commentText = textBox.value;
-
-    if (commentText && selectedRating > 0) {
-        // Crear la nueva tarjeta de comentario
-        const commentCard = document.createElement('div');
-        commentCard.classList.add('card', 'm-2', 'p-3', 'w-75', 'mx-auto');
-
-        // Añadir fecha 
-        const dateTime = document.createElement('p');
-        dateTime.classList.add('card-text', 'small', 'text-muted', 'text-right');
-        dateTime.textContent = `Fecha: ${new Date().toLocaleString()}`;
-        dateTime.style.position = 'absolute';
-        dateTime.style.top = '10px';
-        dateTime.style.right = '10px';
-        dateTime.style.margin = '0';
-
-        // Añadir el nombre del usuario (puedes modificar esto según el sistema de autenticación)
-        const user = document.createElement('h5');
-        user.classList.add('card-title', 'text-center', 'mt-3');
-        user.textContent = "Usuario Anónimo"; // Este nombre puede venir del sistema de autenticación
-
-        // Añadir el comentario
-        const description = document.createElement('p');
-        description.classList.add('card-text', 'text-center');
-        description.textContent = commentText;
-
-        // Crear las estrellas
-        const scoreDiv = document.createElement('div');
-        scoreDiv.classList.add('text-center');
-        for (let i = 1; i <= 5; i++) {
-            const star = document.createElement('i');
-            star.classList.add('fa', i <= selectedRating ? 'fa-star' : 'fa-star-o', 'yellow-stars');
-            star.style.color = 'gold';
-            scoreDiv.appendChild(star);
-        }
-
-        // Añadir los elementos a la tarjeta
-        commentCard.appendChild(dateTime);
-        commentCard.appendChild(user);
-        commentCard.appendChild(description);
-        commentCard.appendChild(scoreDiv);
-
-        // Insertar la tarjeta de comentario al final de la lista de comentarios
-        const commentsList = document.getElementById('comments-list');
-        commentsList.appendChild(commentCard);
-
-        // Limpiar el cuadro de texto y resetear las estrellas
-        textBox.value = '';
-        stars.forEach(s => s.classList.remove('checked'));
-        ratingDisplay.textContent = '0';
-
-        console.log('Comentario añadido correctamente');
-    } else {
-        console.log('Debe escribir un comentario y seleccionar una calificación.');
-    }
-});
 }
+
 // Asegúrate de que la función se ejecute cuando el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', setupQualify);
 
