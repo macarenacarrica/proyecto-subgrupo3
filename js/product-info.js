@@ -202,16 +202,18 @@ function setupQualify() {
     sendButton.type = 'submit'; 
     qualifyDiv.appendChild(sendButton);
 
-    // Evento click del botón de enviar
+  // Evento que se activa al hacer click en el botón de enviar
     sendButton.addEventListener('click', () => {
+        // Obtener el texto del comentario ingresado por el usuario
         const commentText = textBox.value;
-
+// Verificar que el comentario no esté vacío y que se haya seleccionado una calificación
         if (commentText && selectedRating > 0) {
             // Crear la nueva tarjeta de comentario
             const commentCard = document.createElement('div');
+            // Añadir clases de estilo a la tarjeta
             commentCard.classList.add('card', 'm-2', 'p-3', 'w-75', 'mx-auto');
 
-            // Añadir fecha 
+           // Crear y añadir la fecha del comentario
             const dateTime = document.createElement('p');
             dateTime.classList.add('card-text', 'small', 'text-muted', 'text-right');
             dateTime.textContent = `Fecha: ${new Date().toLocaleString()}`;
@@ -220,43 +222,46 @@ function setupQualify() {
             dateTime.style.right = '10px';
             dateTime.style.margin = '0';
 
-            // Añadir el nombre del usuario (puedes modificar esto según el sistema de autenticación)
+            /// Añadir el nombre del usuario (fijo como "Usuario Anónimo" en este caso)
             const user = document.createElement('h5');
             user.classList.add('card-title', 'text-center', 'mt-3');
             user.textContent = "Usuario Anónimo"; // Este nombre puede venir del sistema de autenticación
 
-            // Añadir el comentario
+            // Añadir el comentario ingresado
             const description = document.createElement('p');
             description.classList.add('card-text', 'text-center');
             description.textContent = commentText;
 
-            // Crear las estrellas
+           // Crear el contenedor de estrellas según la calificación
             const scoreDiv = document.createElement('div');
             scoreDiv.classList.add('text-center');
+            // Generar las estrellas visuales
             for (let i = 1; i <= 5; i++) {
                 const star = document.createElement('i');
+                // Añadir clase de estrella llena o vacía según la calificación seleccionada
                 star.classList.add('fa', i <= selectedRating ? 'fa-star' : 'fa-star-o', 'yellow-stars');
                 star.style.color = 'gold';
                 scoreDiv.appendChild(star);
             }
 
-            // Añadir los elementos a la tarjeta
+        // Añadir todos los elementos creados (fecha, usuario, comentario y estrellas) a la tarjeta
             commentCard.appendChild(dateTime);
             commentCard.appendChild(user);
             commentCard.appendChild(description);
             commentCard.appendChild(scoreDiv);
 
-            // Insertar la tarjeta de comentario al final de la lista de comentarios
+            // Añadir la nueva tarjeta al final de la lista de comentarios en el DOM
             const commentsList = document.getElementById('comments-list');
             commentsList.appendChild(commentCard);
 
-            // Limpiar el cuadro de texto y resetear las estrellas
+            // Limpiar el cuadro de texto y resetear la visualización de las estrellas
             textBox.value = '';
             stars.forEach(s => s.classList.remove('checked'));
-            ratingDisplay.textContent = '0';
+            ratingDisplay.textContent = '0';// Resetear el valor visible de la calificación
 
             console.log('Comentario añadido correctamente');
         } else {
+            // Mostrar un mensaje en la consola si falta el comentario o la calificación
             console.log('Debe escribir un comentario y seleccionar una calificación.');
         }
     });
