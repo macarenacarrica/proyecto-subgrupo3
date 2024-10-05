@@ -145,8 +145,8 @@ function setupQualify() {
     // Crea el cuadro de texto
     const textBox = document.createElement('textarea');
     textBox.placeholder = 'Escribe aquí';
-    textBox.rows = 3;  // Ajusta el número de filas según sea necesario
-    textBox.cols = 50; // Ajusta el número de columnas según sea necesario
+    textBox.rows = 3; 
+    textBox.cols = 50; 
     textBox.maxLength = 130;
     textBox.style.resize = 'none'; 
     qualifyDiv.appendChild(textBox);
@@ -160,7 +160,7 @@ function setupQualify() {
         const star = document.createElement('span');
         star.classList.add('fa', 'fa-star');
         if (i <= 3) {
-            star.classList.add('checked'); // Añade la clase 'checked' a las primeras 3 estrellas
+            star.classList.add('checked'); 
         }
         star.setAttribute('data-value', i);
         starsContainer.appendChild(star);
