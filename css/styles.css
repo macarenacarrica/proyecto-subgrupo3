@@ -380,7 +380,7 @@ footer a:hover {
   font-size: 14px; 
   border: 1px solid #ccc;
   border-radius: 10px; 
-  -moz-box-sizing: border-box; /* para que el padding no afecte el tamañao*/
+  -moz-box-sizing: border-box; /* para que el padding no afecte el tamaño*/
 }
 
 
