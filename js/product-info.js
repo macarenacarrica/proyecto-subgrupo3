@@ -224,10 +224,11 @@ sendButton.addEventListener('click', () => {
         dateTime.style.right = '10px';
         dateTime.style.margin = '0';
 
-        // Añadir el nombre del usuario (puedes modificar esto según el sistema de autenticación)
-        const user = document.createElement('h5');
-        user.classList.add('card-title', 'text-center', 'mt-3');
-        user.textContent = "Usuario Anónimo"; // Este nombre puede venir del sistema de autenticación
+       // Recuperar el nombre de usuario
+       const user = document.createElement('h5');
+       user.classList.add('card-title', 'text-center', 'mt-3');
+       const storedUsername = localStorage.getItem('nombreUsuario') || 'Usuario Anónimo';
+       user.textContent = storedUsername;
 
         // Añadir el comentario
         const description = document.createElement('p');
