@@ -1,24 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Verifica si ya se ingresó
     if (localStorage.getItem('sesionIniciada') === 'true') {
-        // Mostrar el nombre de usuario en el menú
+        const primerNombre = localStorage.getItem('primerNombre');
         const nombreUsuario = localStorage.getItem('nombreUsuario');
-        document.getElementById("nombreUsuarioDisplay").textContent = nombreUsuario;
 
-        // Redirige si está en la página de login
+        // Muestra el primer nombre si existe, de lo contrario muestra el nombre de usuario
+        document.getElementById("nombreUsuarioDisplay").textContent = primerNombre || nombreUsuario;
+
         if (window.location.pathname.includes("login.html")) {
             window.location.href = "index.html";
         }
 
-        // Manejo de cierre de sesión
         document.getElementById("logoutLink").addEventListener("click", function(event) {
-            event.preventDefault(); // Evita la acción predeterminada del enlace
+            event.preventDefault();
             localStorage.removeItem('sesionIniciada');
             localStorage.removeItem('nombreUsuario');
-            window.location.href = "login.html"; // Redirigir a la página de login
+            localStorage.removeItem('primerNombre'); // Elimina el primer nombre al cerrar sesión
+            window.location.href = "login.html";
         });
     } else {
-        // Si no hay sesión iniciada, proceder con la lógica del formulario
+        // Lógica del formulario de inicio de sesión
         const loginForm = document.getElementById("loginForm");
         const username = document.getElementById("username");
         const password = document.getElementById("password");
@@ -26,24 +26,19 @@ document.addEventListener("DOMContentLoaded", function() {
         const alertDanger = document.getElementById("alert-danger");
 
         loginForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+            event.preventDefault();
 
-            // Ocultar alertas
             alertSuccess.classList.remove("show");
             alertDanger.classList.remove("show");
 
             if (username.value.trim() === "" || password.value.trim() === "") {
-                // Mostrar alerta de error
                 alertDanger.classList.add("show");
             } else {
-                // Guardar sesión al iniciar correctamente
                 localStorage.setItem('sesionIniciada', 'true');
                 localStorage.setItem('nombreUsuario', username.value.trim());
               
-                // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
 
-                // Redirigir a index.html después de un corto retraso
                 setTimeout(function() {
                     window.location.href = "index.html";
                 }, 1500);
