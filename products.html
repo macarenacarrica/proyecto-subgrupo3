@@ -39,9 +39,17 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html" id="usuario">Ingreso</a> <!--Barra de navegación con enlaces a diferentes secciones del sitio-->
-          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="nombreUsuarioDisplay">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a></li>
+            </ul>
+        </li>
         </ul>
       </div>
     </div>
@@ -114,6 +122,7 @@
   <script src="js/bootstrap.bundle.min.js"></script> <!--Permite que las características interactivas de Bootstrap funcionen-->
   <script src="js/init.js"></script> <!--Archivo JS que inicia la página-->
   <script src="js/products.js" defer async></script> <!--Archivo JS que majena la lógica para mostrar los productos de la página-->
+  <script src="js/login.js"></script>
 </body>
 
 </html>

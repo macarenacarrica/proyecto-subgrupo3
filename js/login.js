@@ -1,10 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Verifica si ya se ingresó
     if (localStorage.getItem('sesionIniciada') === 'true') {
-        // Si la sesión está ingresada, redirige al inicio
+        // Mostrar el nombre de usuario en el menú
+        const nombreUsuario = localStorage.getItem('nombreUsuario');
+        document.getElementById("nombreUsuarioDisplay").textContent = nombreUsuario;
+
+        // Redirige si está en la página de login
         if (window.location.pathname.includes("login.html")) {
             window.location.href = "index.html";
-            }
+        }
+
+        // Manejo de cierre de sesión
+        document.getElementById("logoutLink").addEventListener("click", function(event) {
+            event.preventDefault(); // Evita la acción predeterminada del enlace
+            localStorage.removeItem('sesionIniciada');
+            localStorage.removeItem('nombreUsuario');
+            window.location.href = "login.html"; // Redirigir a la página de login
+        });
     } else {
         // Si no hay sesión iniciada, proceder con la lógica del formulario
         const loginForm = document.getElementById("loginForm");
