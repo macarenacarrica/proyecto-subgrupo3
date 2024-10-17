@@ -9,7 +9,7 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
-.bodylogin {
+.bodylogin, .form-container {
 background-size: cover; /* Asegura que la imagen cubra todo el fondo */
 background-position: center; /* Centra la imagen en la pantalla */
 background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -17,7 +17,8 @@ background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
 margin: 0; /* Elimina el margen por defecto */
 padding: 0; /* Elimina el padding por defecto */
 }
-.loginForm{
+
+.loginForm, .form-container {
 text-align: center;
 margin-left: 35%;
 position: fixed;
@@ -221,7 +222,7 @@ form #carrito {
   margin-right: 3%;
 }
 
-#loginButton {
+#loginButton, .submit-button {
   margin-top: 20px;
   background-color: #5c9f96;
   color: #fff;
@@ -237,7 +238,7 @@ form #carrito {
   text-shadow: 1px 1px 2px rgba(4, 71, 69, 0.5);
 }
 
-#loginButton:hover {
+#loginButton:hover, .submit-button:hover {
   background-color:  rgb(218, 222, 187);
   transition: .7s;
 }
@@ -308,6 +309,9 @@ footer a:hover {
 
   .bodylogin {
     margin: auto;
+  }
+  .row{
+    width: 100%;
   }
 
     .conteiner {
