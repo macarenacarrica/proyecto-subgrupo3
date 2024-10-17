@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<body data-bs-theme= "light"> <!-- Inicialmente en modo claro -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -31,6 +31,7 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+         
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span id="nombreUsuarioDisplay">Usuario</span>
@@ -43,6 +44,12 @@
             </ul>
         </li>
         </ul>
+         <!-- dark mode: Botón para alternar modo oscuro y claro con iconos de sol y luna -->
+ <button id="toggleDarkMode2" class="btn">
+  <i id="iconMoon-2" class="fas fa-moon d-none"></i> <!-- Icono de luna para modo oscuro (inicialmente oculto) -->
+  <i id="iconSun-2" class="fas fa-sun"></i> <!-- Icono de sol para modo claro (visible al inicio) -->
+</button>
+<!--dark mode-->
       </div>
     </div>
   </nav>
