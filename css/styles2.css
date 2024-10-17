@@ -1,0 +1,290 @@
+/*Estilos para info de los productos*/
+#mainCarousel a {
+  color: #212529;
+}
+
+#product {
+  padding: 20px; /* Añadir algo de espacio alrededor */
+  border-radius: 1rem;
+  max-width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+.card {
+  border-radius: 1rem;
+  max-width: 70%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*Cantidad de vendidos*/
+.product-sold {
+  text-align: center;
+  padding: 2rem 0,7rem;
+  border-radius: 2rem; /* Bordes redondeados */
+  background-color: #90AC94;
+  color: #fff; /* Texto */
+}
+
+
+/* Estilos para el carrusel */
+#mainCarousel {
+  background-color: #E5FEE8;
+}
+
+#productCarousel {
+  background-color: #E5FEE8;
+  margin: 0 auto; /* Centra el carrusel */
+  max-width: 80%;
+}
+
+#carousel-images {
+  border-radius: 1rem;
+  max-width: 40rem;
+  margin: 0 auto; /* Centra el carrusel */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra a la imagen */
+}
+
+/* Botones del carrusel */
+#productCarousel .carousel-control-prev-icon,
+#productCarousel .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
+  border-radius: 30%; /* Hace que los botones sean circulares */
+}
+
+
+/* Calificador estrellas */
+
+#qualify {
+  border-radius: 1rem;
+  max-width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.stars-container .fa-star {
+  font-size: 2rem;  
+  color: rgb(37, 36, 36);      
+  cursor: pointer;
+}
+
+.stars-container .checked {
+  color: gold;      
+}
+
+.button-custom {
+  text-align: center;
+  padding: 1rem 0,7rem;
+  border-radius: 2rem; 
+  background-color: #90AC94;
+  color: #fff;
+  font-size: 1.5rem;  
+  width: 10rem; 
+  border: 1px solid #333;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+button:hover {
+background-color: #96a2ad; /* Nuevo color cuando se pasa el cursor */
+transform: scale(1.05); /* Agranda el botón ligeramente */
+}
+
+
+.small-card {
+  transition: box-shadow 0.3s ease; /* Añade una transición suave */
+  cursor: pointer;
+}
+
+.small-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Efecto de sombra más fuerte al pasar el ratón */
+}
+
+ /*Modo Oscuro*/
+/* Modo claro (predeterminado) */
+body[data-bs-theme="light"] {
+  background-color: #f8f9fa; /* Fondo claro */
+  color: #212529; /* Texto oscuro */
+}
+
+body[data-bs-theme="light"] a {
+  color: #007bff; /* Enlaces estándar */
+}
+
+body[data-bs-theme="light"] .navbar {
+  background-color: #343a40; /* Fondo oscuro de la barra de navegación */
+  color: #fff; /* Texto blanco */
+}
+
+body[data-bs-theme="light"] .card {
+  background-color: #fff; /* Fondo blanco */
+  color: #212529; /* Texto oscuro */
+}
+
+body[data-bs-theme="light"] footer {
+  background-color: #f8f9fa; /* Fondo claro del pie de página */
+  color: #212529; /* Texto oscuro */
+}
+
+/* Modo oscuro */
+body[data-bs-theme="dark"] {
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Texto blanco */
+}
+
+body[data-bs-theme="dark"] a {
+  color: #fff; /* Enlaces en blanco */
+}
+
+body[data-bs-theme="dark"] .navbar {
+  background-color: #000; /* Fondo negro para la barra de navegación */
+}
+
+body[data-bs-theme="dark"] .card {
+  background-color: #333; /* Fondo gris oscuro */
+  color: #fff; /* Texto blanco */
+}
+
+body[data-bs-theme="dark"] footer {
+  background-color: #000; /* Fondo negro del pie de página */
+  color: #fff; /* Texto blanco */
+}
+
+/* Estilos específicos para los elementos en ambos modos */
+#mainCarousel a {
+  color: #212529;
+}
+
+#product {
+  padding: 20px; /* Añadir algo de espacio alrededor */
+  border-radius: 1rem;
+  max-width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 1rem;
+  max-width: 70%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*Cantidad de vendidos*/
+.product-sold {
+  text-align: center;
+  padding: 2rem 0.7rem;
+  border-radius: 2rem; /* Bordes redondeados */
+  background-color: #90AC94;
+  color: #fff; /* Texto */
+}
+
+/* Estilos para el carrusel */
+#mainCarousel {
+  background-color: #E5FEE8;
+}
+
+#productCarousel {
+  background-color: #E5FEE8;
+  margin: 0 auto; /* Centra el carrusel */
+  max-width: 80%;
+}
+
+#carousel-images {
+  border-radius: 1rem;
+  max-width: 40rem;
+  margin: 0 auto; /* Centra el carrusel */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra a la imagen */
+}
+
+/* Botones del carrusel */
+#productCarousel .carousel-control-prev-icon,
+#productCarousel .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
+  border-radius: 30%; /* Hace que los botones sean circulares */
+}
+
+/* Calificador estrellas */
+#qualify {
+  border-radius: 1rem;
+  max-width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.stars-container .fa-star {
+  font-size: 2rem;  
+  color: rgb(37, 36, 36);      
+  cursor: pointer;
+}
+
+.stars-container .checked {
+  color: gold;      
+}
+
+/* Botones personalizados */
+.button-custom {
+  text-align: center;
+  padding: 1rem 0.7rem;
+  border-radius: 2rem; 
+  background-color: #90AC94;
+  color: #fff;
+  font-size: 1.5rem;  
+  width: 10rem; 
+  border: 1px solid #333;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+button:hover {
+  background-color: #96a2ad; /* Nuevo color cuando se pasa el cursor */
+  transform: scale(1.05); /* Agranda el botón ligeramente */
+}
+
+/* Tarjetas pequeñas */
+.small-card {
+  transition: box-shadow 0.3s ease; /* Añade una transición suave */
+  cursor: pointer;
+}
+
+.small-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Efecto de sombra más fuerte al pasar el ratón */
+}
+
+/* Modo oscuro */
+body[data-bs-theme="dark"] #mainCarousel {
+  background-color: #000; /* Fondo negro */
+}
+
+body[data-bs-theme="dark"] #productCarousel {
+  background-color: #000; /* Fondo negro */
+}
+
+body[data-bs-theme="dark"] #carousel-images {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Sombra blanca */
+}
+
+body[data-bs-theme="dark"] .product-sold {
+  background-color: #90AC94;
+  color: #fff;
+}
+
+body[data-bs-theme="dark"] .small-card {
+  background-color: #333; /* Fondo gris oscuro */
+  color: #fff; /* Texto blanco */
+}
+
+body[data-bs-theme="dark"] .small-card:hover {
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4); /* Sombra más fuerte al pasar el ratón */
+}
+
+body[data-bs-theme="dark"] button:hover {
+  background-color: #96a2ad; /* Nuevo color cuando se pasa el cursor */
+}
+
+/* Iconos de sol y luna */
+#iconSun-2 {
+  color: #f3f733; /* Color del sol */
+}
+
+#iconMoon-2 {
+  color: #c2c2c2; /* Color de la luna */
+}

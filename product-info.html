@@ -9,10 +9,11 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/styles2.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<body data-bs-theme= "light"> <!-- Inicialmente en modo claro -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -22,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -30,19 +31,49 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-          </li>
+         
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="nombreUsuarioDisplay">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a></li>
+            </ul>
+        </li>
         </ul>
+         <!-- dark mode: Botón para alternar modo oscuro y claro con iconos de sol y luna -->
+ <button id="toggleDarkMode2" class="btn">
+  <i id="iconMoon-2" class="fas fa-moon d-none"></i> <!-- Icono de luna para modo oscuro (inicialmente oculto) -->
+  <i id="iconSun-2" class="fas fa-sun"></i> <!-- Icono de sol para modo claro (visible al inicio) -->
+</button>
+<!--dark mode-->
       </div>
     </div>
   </nav>
-  <main>
+  <main id="mainCarousel">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
+      <a href="products.html">Volver</a>
+            <!-- Carrusel para mostrar imágenes asociadas al procucto -->
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner" id="carousel-images"></div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+      <div id="product"></div>
+      <div id="qualify"></div>
+      <div id="comments-list" class="mt-4"></div>
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -62,6 +93,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="js/login.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
-.bodylogin {
+.bodylogin, .form-container {
 background-size: cover; /* Asegura que la imagen cubra todo el fondo */
 background-position: center; /* Centra la imagen en la pantalla */
 background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -17,7 +17,8 @@ background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
 margin: 0; /* Elimina el margen por defecto */
 padding: 0; /* Elimina el padding por defecto */
 }
-.loginForm{
+
+.loginForm, .form-container {
 text-align: center;
 margin-left: 35%;
 position: fixed;
@@ -211,7 +212,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-
 /*Detalles del login*/
 #carrito {
   width: 180px;
@@ -222,7 +222,7 @@ form #carrito {
   margin-right: 3%;
 }
 
-#loginButton {
+#loginButton, .submit-button {
   margin-top: 20px;
   background-color: #5c9f96;
   color: #fff;
@@ -238,7 +238,7 @@ form #carrito {
   text-shadow: 1px 1px 2px rgba(4, 71, 69, 0.5);
 }
 
-#loginButton:hover {
+#loginButton:hover, .submit-button:hover {
   background-color:  rgb(218, 222, 187);
   transition: .7s;
 }
@@ -307,8 +307,11 @@ footer a:hover {
 
 @media (max-width: 568px) {
 
-  .body {
-    margin: 0 auto;
+  .bodylogin {
+    margin: auto;
+  }
+  .row{
+    width: 100%;
   }
 
     .conteiner {
@@ -317,17 +320,12 @@ footer a:hover {
       background-position: center;
       text-align: left;
     }
-    .loginForm {
+    form#loginForm{
       max-width: 100%;
       width: auto; 
       box-sizing: border-box; 
       margin: 20% 50% 20% 20%;
-      margin-left: 18%;
     }
-    .loginForm #carrito{
-      width: 60%;
-    }
-
     .icono {
       width: auto; /* Ajusta el tamaño de las imágenes */
       height: auto; /* Mantiene la proporción de la imagen */
@@ -354,7 +352,7 @@ footer a:hover {
     display: block;
   }
 
-@media (min-width: 768px){
+@media (max-width: 768px){
   .loginForm{
     margin-top: 20%;
     margin-left: 30%;
@@ -369,4 +367,66 @@ footer a:hover {
     justify-content: right;
     text-align: right;
   }
+}
+
+/* BUSCADOR*/
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; 
+  width: 100%;
+}
+
+#searchProductInput {
+  width: 50%; 
+  padding: 10px; 
+  font-size: 14px; 
+  border: 1px solid #ccc;
+  border-radius: 10px; 
+  -moz-box-sizing: border-box; /* para que el padding no afecte el tamaño*/
+}
+
+/* Bloque del Modo Oscuro*/ 
+
+/*Cambios al boton*/
+#toggleDarkMode {
+  border: none; /* Sin borde */
+  background-color: transparent; /* Fondo transparente */
+  padding: 0; /* Sin padding para que solo se muestre el icono */
+}
+
+#toggleDarkMode i {
+  font-size: 1.5rem; /* Ajusta el tamaño del icono */
+  
+}
+
+#iconMoon {
+color: #ccc;
+}
+
+#iconSun {
+color: yellow;
+}
+
+
+/* Cambios en la pantalla*/
+body.dark-mode {
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Ajustar otros elementos en modo oscuro si es necesario */
+.navbar.dark-mode {
+  background-color: #333; /* Navbar más oscura */
+}
+
+.card.dark-mode {
+  background-color: #1e1e1e; /* Fondo de las tarjetas en modo oscuro */
+  color: #ffffff; /* Texto blanco en tarjetas */
+}
+
+.jumbotron.dark-mode {
+  background-color: #1e1e1e; /* Fondo oscuro en el jumbotron */
+  color: #ffffff; /* Texto blanco en el jumbotron */
 }

@@ -39,3 +39,16 @@ let getJSONData = function(url){
         return result;
     });
 }
+document.addEventListener("DOMContentLoaded", function() {
+  cambiarTextoEnlace();
+});
+
+function cambiarTextoEnlace() {
+  var usuario = document.getElementById("usuario");
+  if (usuario) {
+      var nombreUsuario = localStorage.getItem('nombreUsuario');
+      if (nombreUsuario) {
+          usuario.innerHTML = nombreUsuario;
+      } 
+  } 
+}
