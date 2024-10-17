@@ -53,3 +53,13 @@ fetch(url)
   .catch(error => {
     console.error('Hubo un problema con la petición:', error);
   });
+
+  <!-- Campo de búsqueda -->
+<input type="search" id="product-search" placeholder="Buscar productos..." />
+
+// Buscador e tiempo real
+
+document.getElementById("product-search").addEventListener("input", function() {
+    searchTerm = this.value; // Actualizar el término de búsqueda
+    showProductsList(); // Mostrar la lista de productos filtrados
+});
