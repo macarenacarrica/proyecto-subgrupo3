@@ -1,23 +1,15 @@
 document.getElementById('userForm').addEventListener('submit', function (e) {
-  e.preventDefault(); // Evitar que el formulario se envíe y la página se recargue
+  e.preventDefault(); // Usamos e.preventDefault() para evitar que el formulario se envíe y la página se recargue
   
-  const nombre = document.getElementById('nombre').value.trim();
-  const segundoNombre = document.getElementById('segundoNombre').value.trim();
-  const apellido = document.getElementById('apellido').value.trim();
-  const segundoApellido = document.getElementById('segundoApellido').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const telefono = document.getElementById('telefono').value.trim();
+  const nombre = document.getElementById('nombre').value;
+  const segundoNombre = document.getElementById('segundoNombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const segundoApellido = document.getElementById('segundoApellido').value;
+  const email = document.getElementById('email').value;
+  const telefono = document.getElementById('telefono').value;
   const fotoPerfil = document.getElementById('fotoPerfil').files[0];
 
-  // Guardar los datos en localStorage
-  localStorage.setItem('nombreUsuario', nombre);
-  localStorage.setItem('emailUsuario', email);
-  localStorage.setItem('telefonoUsuario', telefono);
-  localStorage.setItem('fotoPerfilUsuario', fotoPerfil)
-  // Actualizar la barra de navegación
-  updateNavbarUserInfo();
-
-  // Procesar los datos del formulario
+  // Aquí puedes procesar los datos del formulario
   console.log({
     nombre,
     segundoNombre,
@@ -31,23 +23,18 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
   alert("Cambios guardados con éxito!");
 });
 
-// Función para actualizar la barra de navegación
-function updateNavbarUserInfo() {
-  const nombreUsuarioDisplay = document.getElementById("nombreUsuarioDisplay");
-  const nombre = localStorage.getItem('nombreUsuario');
-  const email = localStorage.getItem('emailUsuario');
+function completarEmail() {
+  // Obtén el campo de entrada de email
+  var emailInput = document.getElementById("email");
+  
+  // Obtén el nombre de usuario desde localStorage
+  var nombreUsuario = localStorage.getItem('nombreUsuario');
 
-  // Mostrar el nombre si está disponible, de lo contrario el email
-  if (nombre) {
-    nombreUsuarioDisplay.textContent = nombre;
-  } else if (email) {
-    nombreUsuarioDisplay.textContent = email;
-  } else {
-    nombreUsuarioDisplay.textContent = "Usuario";
+  // Si ambos existen, establece el valor del campo email
+  if (emailInput && nombreUsuario) {
+      emailInput.value = nombreUsuario;
   }
 }
 
-// Llamar a la función al cargar la página para que muestre los datos actuales
-document.addEventListener("DOMContentLoaded", function() {
-  updateNavbarUserInfo();
-});
+// Llama a la función al cargar la página
+document.addEventListener("DOMContentLoaded", completarEmail);
