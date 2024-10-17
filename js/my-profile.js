@@ -22,3 +22,19 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
 
   alert("Cambios guardados con éxito!");
 });
+
+function completarEmail() {
+  // Obtén el campo de entrada de email
+  var emailInput = document.getElementById("email");
+  
+  // Obtén el nombre de usuario desde localStorage
+  var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+  // Si ambos existen, establece el valor del campo email
+  if (emailInput && nombreUsuario) {
+      emailInput.value = nombreUsuario;
+  }
+}
+
+// Llama a la función al cargar la página
+document.addEventListener("DOMContentLoaded", completarEmail);
