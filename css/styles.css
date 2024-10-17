@@ -383,4 +383,46 @@ footer a:hover {
   -moz-box-sizing: border-box; /* para que el padding no afecte el tamaño*/
 }
 
+/* Bloque del Modo Oscuro*/ 
 
+/*Cambios al boton*/
+#toggleDarkMode {
+  border: none; /* Sin borde */
+  background-color: transparent; /* Fondo transparente */
+  padding: 0; /* Sin padding para que solo se muestre el icono */
+}
+
+#toggleDarkMode i {
+  font-size: 1.5rem; /* Ajusta el tamaño del icono */
+  
+}
+
+#iconMoon {
+color: #ccc;
+}
+
+#iconSun {
+color: yellow;
+}
+
+
+/* Cambios en la pantalla*/
+body.dark-mode {
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Ajustar otros elementos en modo oscuro si es necesario */
+.navbar.dark-mode {
+  background-color: #333; /* Navbar más oscura */
+}
+
+.card.dark-mode {
+  background-color: #1e1e1e; /* Fondo de las tarjetas en modo oscuro */
+  color: #ffffff; /* Texto blanco en tarjetas */
+}
+
+.jumbotron.dark-mode {
+  background-color: #1e1e1e; /* Fondo oscuro en el jumbotron */
+  color: #ffffff; /* Texto blanco en el jumbotron */
+}
