@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const nombreUsuarioDisplay = document.getElementById("nombreUsuarioDisplay");
+
     // Verifica si ya se ingresó
     if (localStorage.getItem('sesionIniciada') === 'true') {
-        // Mostrar el nombre de usuario en el menú
-        const nombreUsuario = localStorage.getItem('nombreUsuario');
-        document.getElementById("nombreUsuarioDisplay").textContent = nombreUsuario;
+        updateNavbarUserInfo();
 
         // Redirige si está en la página de login
         if (window.location.pathname.includes("login.html")) {
@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault(); // Evita la acción predeterminada del enlace
             localStorage.removeItem('sesionIniciada');
             localStorage.removeItem('nombreUsuario');
+            localStorage.removeItem('emailUsuario');
             window.location.href = "login.html"; // Redirigir a la página de login
         });
     } else {
@@ -34,12 +35,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (username.value.trim() === "" || password.value.trim() === "") {
                 // Mostrar alerta de error
+                alertDanger.textContent = "Por favor, completa todos los campos.";
                 alertDanger.classList.add("show");
             } else {
                 // Guardar sesión al iniciar correctamente
                 localStorage.setItem('sesionIniciada', 'true');
-                localStorage.setItem('nombreUsuario', username.value.trim());
-              
+                localStorage.setItem('nombreUsuario', username.value.trim()); 
+                localStorage.setItem('emailUsuario', username.value.trim() + "@ejemplo.com"); 
+
                 // Mostrar alerta de éxito
                 alertSuccess.classList.add("show");
 
@@ -50,4 +53,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    function updateNavbarUserInfo() {
+        const nombre = localStorage.getItem('nombreUsuario');
+        const email = localStorage.getItem('emailUsuario');
+
+        // Mostrar el nombre si está disponible, de lo contrario el email
+        if (nombre) {
+            nombreUsuarioDisplay.textContent = nombre;
+        } else if (email) {
+            nombreUsuarioDisplay.textContent = email;
+        } else {
+            nombreUsuarioDisplay.textContent = "Usuario";
+        }
 });
