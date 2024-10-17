@@ -9,6 +9,9 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
   const telefono = document.getElementById('telefono').value;
   const fotoPerfil = document.getElementById('fotoPerfil').files[0];
 
+     // Guarda el nombre en localStorage
+     localStorage.setItem('primerNombre', nombre);
+     
   // Aquí puedes procesar los datos del formulario
   console.log({
     nombre,
