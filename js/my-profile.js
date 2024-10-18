@@ -30,6 +30,7 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
   localStorage.setItem('segundoApellido', segundoApellido);
   localStorage.setItem('email', email);
   localStorage.setItem('telefono', telefono);
+  localStorage.setItem('fotoPerfil', fotoPerfil);
 
   alert("Cambios guardados con éxito!");
 });
@@ -42,6 +43,7 @@ function completarFormulario() {
   document.getElementById('segundoApellido').value = localStorage.getItem('segundoApellido') || '';
   document.getElementById('email').value = localStorage.getItem('email') || '';
   document.getElementById('telefono').value = localStorage.getItem('telefono') || '';
+  document.getElementById('fotoPerfil').value = localStorage.getItem('fotoPerfil') || '';
 }
 
 // Llama a la función al cargar la página
