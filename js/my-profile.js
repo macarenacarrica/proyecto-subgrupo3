@@ -9,9 +9,9 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
   const telefono = document.getElementById('telefono').value;
   const fotoPerfil = document.getElementById('fotoPerfil').files[0];
 
-   // Guarda el nombre en localStorage
-  localStorage.setItem('primerNombre', nombre);
-
+     // Guarda el nombre en localStorage
+     localStorage.setItem('primerNombre', nombre);
+     
   // Aquí puedes procesar los datos del formulario
   console.log({
     nombre,
@@ -23,8 +23,29 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
     fotoPerfil
   });
 
+  // Guardar datos en localStorage
+  localStorage.setItem('nombre', nombre);
+  localStorage.setItem('segundoNombre', segundoNombre);
+  localStorage.setItem('apellido', apellido);
+  localStorage.setItem('segundoApellido', segundoApellido);
+  localStorage.setItem('email', email);
+  localStorage.setItem('telefono', telefono);
+
   alert("Cambios guardados con éxito!");
 });
+
+// Función para completar el formulario con datos de localStorage
+function completarFormulario() {
+  document.getElementById('nombre').value = localStorage.getItem('nombre') || '';
+  document.getElementById('segundoNombre').value = localStorage.getItem('segundoNombre') || '';
+  document.getElementById('apellido').value = localStorage.getItem('apellido') || '';
+  document.getElementById('segundoApellido').value = localStorage.getItem('segundoApellido') || '';
+  document.getElementById('email').value = localStorage.getItem('email') || '';
+  document.getElementById('telefono').value = localStorage.getItem('telefono') || '';
+}
+
+// Llama a la función al cargar la página
+document.addEventListener("DOMContentLoaded", completarFormulario);
 
 function completarEmail() {
   // Obtén el campo de entrada de email
