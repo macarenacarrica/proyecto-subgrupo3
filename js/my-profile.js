@@ -64,3 +64,42 @@ function completarEmail() {
 
 // Llama a la función al cargar la página
 document.addEventListener("DOMContentLoaded", completarEmail);
+
+/////////////////////
+
+
+// Función para cambiar la foto de perfil y guardarla en localStorage
+function saveProfileImage() {
+  const fileInput = document.getElementById('fotoPerfil');
+  const file = fileInput.files[0];
+
+  if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+          const base64Image = event.target.result;
+
+          // Guardar la imagen en localStorage
+          localStorage.setItem('fotoPerfil', base64Image);
+
+          // Mostrar la imagen seleccionada en la página
+          document.querySelector('.profile-pic img').src = base64Image;
+
+          alert('¡Foto de perfil actualizada y guardada!');
+      };
+      reader.readAsDataURL(file); // Convertir la imagen a Base64
+  } else {
+      alert('Por favor, selecciona una foto.');
+  }
+}
+
+// Función para cargar la imagen de perfil desde localStorage cuando se carga la página
+window.onload = function() {
+  const storedImage = localStorage.getItem('fotoPerfil');
+  if (storedImage) {
+      // Si existe una imagen guardada, mostrarla
+      document.querySelector('.profile-pic img').src = storedImage;
+  }
+};
+
+// Asociar el cambio de imagen al evento "input change"
+document.getElementById('fotoPerfil').addEventListener('change', saveProfileImage);

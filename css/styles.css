@@ -384,6 +384,7 @@ footer a:hover {
   font-size: 14px; 
   border: 1px solid #ccc;
   border-radius: 10px; 
+<<<<<<< Updated upstream
   -moz-box-sizing: border-box; /* para que el padding no afecte el tamaño*/
 }
 
@@ -429,4 +430,7 @@ body.dark-mode {
 .jumbotron.dark-mode {
   background-color: #1e1e1e; /* Fondo oscuro en el jumbotron */
   color: #ffffff; /* Texto blanco en el jumbotron */
+=======
+  -moz-box-sizing: border-box; /* no afecte el padding*/
+>>>>>>> Stashed changes
 }

@@ -127,16 +127,15 @@ function selectProduct(productId) {
     window.location.href = 'product-info.html';
 }
 
-// Búsqueda en tiempo real (esto debe estar separado de showProductsList)
-document.getElementById("searchProductInput").addEventListener("input", function(e) {
+/*BUSCADOR EN TIEMPO REAL*/
+
+document.getElementById("searchProductInput").addEventListener("input", function(e) { 
     const searchTerm = e.target.value.toLowerCase();
 
-    // Filtrar productos en base al nombre o la descripción
-    const filteredProducts = currentProductsArray.filter(product => {
+    const filteredProducts = currentProductsArray.filter(product => { // filtra los productos basados en lo que esribe el usuario
         return product.name.toLowerCase().includes(searchTerm) || 
                product.description.toLowerCase().includes(searchTerm);
     });
 
-    // Mostrar productos filtrados
-    showProductsList(filteredProducts);
+    showProductsList(filteredProducts); // muestra los prdoductos filtrados
 });
