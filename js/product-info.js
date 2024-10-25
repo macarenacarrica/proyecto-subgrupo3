@@ -34,6 +34,10 @@ function fetchProduct() {
                             img.classList.add('d-block', 'w-100', 'img-fluid'); // Clases de Bootstrap para hacer la imagen responsiva
                             img.alt = data.name;
 
+                            // Guardar la URL de la imagen en localStorage
+                            localStorage.setItem(`carouselImage${index}`, image);
+                            console.log(image);
+
                             carouselItem.appendChild(img);
                             carouselInner.appendChild(carouselItem);
                         });
@@ -51,6 +55,8 @@ function fetchProduct() {
                     const productName = document.createElement('h1');
                     productName.classList.add('card-title');
                     productName.textContent = data.name;
+                    localStorage.setItem('productName', productName);
+                    console.log(productName);
 
                     const productDescription = document.createElement('p');
                     productDescription.classList.add('card-text');
@@ -61,19 +67,36 @@ function fetchProduct() {
                     productCategory.textContent = `Categoría: ${data.category}`;
 
                     const productSold = document.createElement('p');
-                    productSold.classList.add('btn', 'btn-secondary', 'text-white', 'mb-3', 'product-sold');
+                    productSold.classList.add('card-text');
                     productSold.textContent = `Cantidad de vendidos: ${data.soldCount}`;
 
+                    const productCart = document.createElement('p');
+                    productCart.classList.add('btn', 'btn-secondary', 'text-white', 'mb-3', 'product-cart');
+                    productCart.textContent = `Comprar`;
+
+                    const productCost = document.createElement('p');
+                    productCost.classList.add('card-text');
+                    productCost.textContent = `Precio: ${data.cost} ${data.currency}`;
+                    localStorage.setItem('productCost', data.cost); // Guarda el costo en localStorage
+                    localStorage.setItem('productCurrency', data.currency); // Guarda la moneda en localStorage
+                    console.log(productCost);
+
+                    productCart.addEventListener('click', () => {
+                        window.location.href = 'cart.html';
+                    });
 
 
                     cardBodyDiv.appendChild(productName);
                     cardBodyDiv.appendChild(productCategory);
                     cardBodyDiv.appendChild(productDescription);
                     cardBodyDiv.appendChild(productSold);
+                    cardBodyDiv.appendChild(productCost);
+                    cardBodyDiv.appendChild(productCart);
                     productCard.appendChild(cardBodyDiv);
                     productList.appendChild(productCard);
+                    
 
-                     // Sección para productos relacionados
+                    // Sección para productos relacionados
                      const relatedProductsDiv = document.createElement('div');
                      relatedProductsDiv.classList.add('related-products', 'mt-4');
  

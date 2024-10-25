@@ -72,6 +72,11 @@ function showProductsList(products) {
                     </div>
                 </div>
             </div>`;
+
+            // Guardar el costo del producto en localStorage
+            localStorage.setItem(`productCost_${producto.id}`, `${producto.cost} ${producto.currency}`);
+            console.log(`Producto ID: ${producto.id}, Costo almacenado: ${producto.cost} ${producto.currency}`);
+            
         productList.appendChild(productDiv);
     });
 }
