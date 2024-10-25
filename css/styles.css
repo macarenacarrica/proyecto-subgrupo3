@@ -387,7 +387,7 @@ footer a:hover {
   -moz-box-sizing: border-box; /* para que el padding no afecte el tamaño*/
 }
 
-/* Bloque del Modo Oscuro*/ 
+/* BLOQUE DEL MODO OSCURO*/ 
 
 /*Cambios al boton*/
 #toggleDarkMode {
@@ -430,4 +430,333 @@ body.dark-mode {
   background-color: #1e1e1e; /* Fondo oscuro en el jumbotron */
   color: #ffffff; /* Texto blanco en el jumbotron */
   -moz-box-sizing: border-box; /* no afecte el padding*/
+}
+/* BLOQUE DE CARRITO*/
+/* General Container Styling */
+
+body{
+  background-color: rgb(206, 250, 206);
+}
+h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+/* Cart Product Styling */
+.cart-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.cart-product img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+/* Detalles del producto: Nombre y controles de cantidad */
+.cart-product-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Añadimos espacio entre los elementos */
+}
+
+
+.cart-product-details h4 {
+  margin: 0;
+  font-size: 18px;
+  font-size: 18px;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.cart-product-details p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Controles de cantidad centrados */
+.quantity-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Espacio entre botones y input */
+}
+
+/* Botones de cantidad */
+.quantity-control button {
+  padding: 5px 10px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+/* Campo de cantidad centrado */
+.quantity-control input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Subtotal, Total, and Buttons */
+#cart-container {
+  margin-top: 20px;
+}
+
+#cart-total {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+button {
+  background-color: #5c9f96;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #4a8379;
+}
+
+/* Currency Switch Buttons */
+.currency-button-group {
+  display: flex;
+  justify-content: space-between;
+  max-width: 200px;
+  margin: 10px 0;
+}
+
+.currency-button {
+  padding: 10px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.currency-button.active {
+  background-color: #5c9f96;
+  color: white;
+}
+
+/* Empty Cart Message */
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Remove Product Button */
+.remove-product {
+  background-color: #f59d99;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-product:hover {
+  background-color: #f5aba8;
+}
+
+/* Input field for the code */
+input#discount-code {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
+
+/* Nuevo botón de "Vaciar carrito" */
+.empty-cart-btn {
+  background-color: rgba(214, 255, 216, 0.836);
+  color: rgb(11, 11, 11);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 2%
+}
+
+.empty-cart-btn:hover {
+  background-color: #fcbebe;
+}
+
+/* Nuevo icono de carrito en la parte derecha */
+.cart-icon {
+  float: right;
+  margin-top: -50px;
+}
+
+.cart-icon img {
+  width: 40px;
+  height: auto;
+}
+
+/* Cart Product Styling */
+.cart-product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-product img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.cart-product-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-product-details h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.cart-product-details p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Nuevo estilo para el subtotal */
+.subtotal-section {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+#cart-subtotal {
+  font-size: 20px;
+  font-weight: bold;
+  color: #121212;
+}
+
+/* Sección de cambio de moneda */
+.currency-section {
+  margin-top: 20px;
+
+}
+
+.currency-section p {
+  font-size: 18px;
+  text-align: left;
+}
+
+.currency-button-group {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  max-width: 200px;
+  margin: 10px 0;
+}
+
+.currency-button {
+  
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.currency-button.active {
+  background-color: #5c9f96;
+  color: white;
+}
+
+/* Nueva sección para el código de descuento */
+.coupon-section {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.coupon-section p {
+  font-size: 18px;
+  text-align: left;
+}
+
+input#discount-code {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+/* Campo del total */
+#cart-total {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.IconoCarrito {
+  font-size: 50%; /* Ajusta el tamaño */
+  color: #5c9f96; /* Cambia el color del icono */
+}
+
+/* Botón de eliminar producto (X) */
+.remove-product {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
 }

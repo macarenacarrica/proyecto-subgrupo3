@@ -45,10 +45,41 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container-cart">
+      <div class="cart-header">
+        <!-- Botón de "Vaciar carrito" alineado a la izquierda -->
+        <button id="empty-cart" class="empty-cart-btn">🗑 Vaciar carrito</button>
+
+        <div class="IconoCarrito">
+          <i class="bi bi-cart"></i> <!-- Icono de carrito de Bootstrap -->
+       </div>
+       
+      <h1>Detalles del Pedido</h1>
+      <div id="cart-container"></div> <!-- Aquí se mostrarán los productos -->
+
+      <!-- Sección de subtotal -->
+      <div class="subtotal-section">
+        <p>SUBTOTAL:</p>
+        <p id="cart-subtotal">USD 0.00</p>
       </div>
+
+      <!-- Sección para seleccionar la moneda -->
+      <div class="currency-section">
+        <p>¿En qué moneda quieres pagar?</p>
+        <div class="currency-button-group">
+          <button class="currency-button active">USD</button>
+          <button class="currency-button">UYU</button>
+        </div>
+      </div>
+
+      <!-- Sección de cupón de descuento -->
+      <div class="coupon-section">
+        <p>¿Tienes un cupón de descuento?</p>
+        <input type="text" id="discount-code" placeholder="INGRESA TU CÓDIGO">
+      </div>
+
+      <!-- Total -->
+      <h3 id="cart-total">TOTAL: USD 0.00</h3>
     </div>
   </main>
   <footer class="text-muted">
