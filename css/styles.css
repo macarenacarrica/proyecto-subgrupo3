@@ -432,8 +432,6 @@ body.dark-mode {
   -moz-box-sizing: border-box; /* no afecte el padding*/
 }
 /* BLOQUE DE CARRITO*/
-/* General Container Styling */
-
 body{
   background-color: rgb(206, 250, 206);
 }
@@ -445,7 +443,7 @@ h2 {
   text-align: left;
 }
 
-/* Cart Product Styling */
+/* Estilos de Producto en el Carrito */
 .cart-product {
   display: flex;
   justify-content: space-between;
@@ -472,7 +470,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px; /* Añadimos espacio entre los elementos */
+  gap: 20px; /* Añadimo espacio entre los elementos */
 }
 
 
@@ -517,7 +515,7 @@ h2 {
   padding: 5px;
 }
 
-/* Subtotal, Total, and Buttons */
+/* Subtotal, Total, y botones */
 #cart-container {
   margin-top: 20px;
 }
@@ -546,7 +544,7 @@ button:hover {
   background-color: #4a8379;
 }
 
-/* Currency Switch Buttons */
+/* Botones para Cambiar Moneda */
 .currency-button-group {
   display: flex;
   justify-content: space-between;
@@ -568,14 +566,14 @@ button:hover {
   color: white;
 }
 
-/* Empty Cart Message */
+/* Mensaje de Carrito Vacío */
 p {
   text-align: center;
   font-size: 18px;
   color: #666;
 }
 
-/* Remove Product Button */
+/* Botón para Eliminar Producto */
 .remove-product {
   background-color: #f59d99;
   color: white;
@@ -589,8 +587,8 @@ p {
   background-color: #f5aba8;
 }
 
-/* Input field for the code */
-input#discount-code {
+/* Campo de entrada para el código */
+.input#discount-code {
   width: 100%;
   padding: 10px;
   margin: 20px 0;
@@ -628,7 +626,7 @@ input#discount-code {
   height: auto;
 }
 
-/* Cart Product Styling */
+/* Estilos de Productos en el Carrito */
 .cart-product {
   display: flex;
   align-items: center;
