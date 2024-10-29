@@ -90,6 +90,34 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
     }
+// Función para aumentar la cantidad
+window.increaseQuantity = function () {
+    const quantityInput = document.getElementById("quantity");
+    let currentQuantity = parseInt(quantityInput.value);
+    quantityInput.value = currentQuantity + 1; // Incrementa la cantidad en 1
+    updateTotal(currentQuantity + 1);
+};
+
+// Función para disminuir la cantidad
+window.decreaseQuantity = function () {
+    const quantityInput = document.getElementById("quantity");
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+        quantityInput.value = currentQuantity - 1; // Decrementa la cantidad en 1
+        updateTotal(currentQuantity - 1);
+    }
+};
+
+// Función para actualizar el total
+function updateTotal(quantity) {
+    const cost = parseFloat(localStorage.getItem('productCost')); // Obtén el costo del producto
+    const currency = localStorage.getItem('productCurrency');
+    const subtotalElement = document.getElementById("subtotal");
+    const totalElement = document.getElementById("total");
+    const newSubtotal = (cost * quantity).toFixed(2); // Calcula el nuevo subtotal
+    subtotalElement.textContent = newSubtotal; // Actualiza el subtotal
+    totalElement.textContent = newSubtotal; // Actualiza el total (puedes ajustar si aplicas descuentos)
+}
 
     // Función para vaciar el carrito
     window.removeFromCart = function () {
