@@ -81,13 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="btn-remove" onclick="removeFromCart()">×</button>
             </div>
             <div class="cart-summary">
-                <p id="subtotal"><strong>SUBTOTAL:</strong> ${currency} ${cost}</p>
+                <p><strong>SUBTOTAL:</strong><span id="subtotal">${currency} ${cost}</span></p>
                 <p>¿En qué moneda quieres pagar?</p>
                 <button class="btn-currency active" onclick="changeCurrency('USD')">USD</button>
                 <button class="btn-currency" onclick="changeCurrency('UYU')">UYU</button>
                 <p>¿Tienes un cupón de descuento?</p>
                 <input type="text" class="discount-input" placeholder="INGRESA TU CODIGO" id="discountCode">
-                <p id="total"><strong>TOTAL:</strong> ${currency} ${cost}</p>
+                <p><strong>TOTAL:</strong> <span id="total">${currency} ${cost}</span></p>
             </div>
         `;
     }
@@ -116,8 +116,8 @@ function updateTotal(quantity) {
     const subtotalElement = document.getElementById("subtotal");
     const totalElement = document.getElementById("total");
     const newSubtotal = (cost * quantity).toFixed(2); // Calcula el nuevo subtotal
-    subtotalElement.textContent = newSubtotal; 
-    totalElement.textContent = newSubtotal; 
+    subtotalElement.textContent = `${currency} ${newSubtotal}`; 
+    totalElement.textContent = `${currency} ${newSubtotal}`;; 
 }
 
     // Función para vaciar el carrito
