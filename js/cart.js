@@ -63,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderCart(name, cost, currency, image) {
         container.innerHTML = `
             <button class="btn-clear-cart">
-                <i class="fa fa-trash"></i> Vaciar carrito
-            </button>
+                <i class="fa fa-trash"></i> Vaciar carrito </button>
             <h1>Detalles del Pedido</h1>
             <div class="cart-item">
                 <img src="${image}" alt="${name}" class="product-image">
