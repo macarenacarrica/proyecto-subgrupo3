@@ -63,7 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderCart(name, cost, currency, image) {
         container.innerHTML = `
             <button class="btn-clear-cart">
-                <i class="fa fa-trash"></i> Vaciar carrito </button>
+                <i class="fa fa-trash"></i> Vaciar carrito
+            </button>
+            <br>
             <h1>Detalles del Pedido</h1>
             <div class="cart-item">
                 <img src="${image}" alt="${name}" class="product-image">
@@ -79,16 +81,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="btn-remove" onclick="removeFromCart()">×</button>
             </div>
             <div class="cart-summary">
-                <p><strong>SUBTOTAL:</strong> ${currency} <span id="subtotal">${cost}</span></p>
+                <p><strong>SUBTOTAL:</strong><span id="subtotal">${currency} ${cost}</span></p>
                 <p>¿En qué moneda quieres pagar?</p>
                 <button class="btn-currency active" onclick="changeCurrency('USD')">USD</button>
                 <button class="btn-currency" onclick="changeCurrency('UYU')">UYU</button>
                 <p>¿Tienes un cupón de descuento?</p>
                 <input type="text" class="discount-input" placeholder="INGRESA TU CODIGO" id="discountCode">
-                <p><strong>TOTAL:</strong> ${currency} <span id="total">${cost}</span></p>
+                <p><strong>TOTAL:</strong> <span id="total">${currency} ${cost}</span></p>
             </div>
         `;
     }
+// Función para aumentar la cantidad
+window.increaseQuantity = function () {
+    const quantityInput = document.getElementById("quantity");
+    let currentQuantity = parseInt(quantityInput.value);
+    quantityInput.value = currentQuantity + 1; // Incrementa la cantidad en 1
+    updateTotal(currentQuantity + 1);
+};
+
+// Función para disminuir la cantidad
+window.decreaseQuantity = function () {
+    const quantityInput = document.getElementById("quantity");
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+        quantityInput.value = currentQuantity - 1; // Decrementa la cantidad en 1
+        updateTotal(currentQuantity - 1);
+    }
+};
+
+// Función para actualizar el total
+function updateTotal(quantity) {
+    const cost = parseFloat(localStorage.getItem('productCost')); // Obtén el costo del producto
+    const currency = localStorage.getItem('productCurrency');
+    const subtotalElement = document.getElementById("subtotal");
+    const totalElement = document.getElementById("total");
+    const newSubtotal = (cost * quantity).toFixed(2); // Calcula el nuevo subtotal
+    subtotalElement.textContent = `${currency} ${newSubtotal}`; 
+    totalElement.textContent = `${currency} ${newSubtotal}`;; 
+}
 
     // Función para vaciar el carrito
     window.removeFromCart = function () {

@@ -465,8 +465,6 @@ h1 {
   right: 50px;
   margin-top: -23%;
   margin-right: 40%;
-  
-  
 }
 
 /* Botón de vaciar carrito */
@@ -487,7 +485,7 @@ h1 {
   align-items: center;
   justify-content: space-between; /* Para alinear elementos a los lados */
   padding: 10px;
-  background-color: #fff;
+  background-color: #f5f1f1;
   border-radius: 8px;
   margin-bottom: 10px;
 }
@@ -564,7 +562,7 @@ h1 {
 .cart-summary {
   margin-top: 20px;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: #f7f1f1;
   border-radius: 8px;
 }
 
