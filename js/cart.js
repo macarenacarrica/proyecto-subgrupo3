@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // **Función para calcular el subtotal del carrito**
     function calculateSubtotal(carrito) {
-        return carrito.reduce((total, producto) => total + producto.cost * producto.cantidad, 0).toFixed(2);
+        return 'USD ' + (carrito.reduce((total, producto) => total + producto.cost * producto.cantidad, 0).toFixed(2));
     }
 
     // **Función para cambiar la cantidad de un producto específico**
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (producto) {
             producto.cantidad = Math.max(1, producto.cantidad + delta);
             document.getElementById(`quantity-${productId}`).value = producto.cantidad; // Actualiza la cantidad en el campo de texto
-            document.getElementById(`subtotal-${productId}`).textContent = (producto.cost * producto.cantidad).toFixed(2); // Actualiza el subtotal
+            document.getElementById(`subtotal-${productId}`).textContent = 'USD ' + (producto.cost * producto.cantidad).toFixed(2); // Actualiza el subtotal
             localStorage.setItem('carrito', JSON.stringify(carrito));
             renderCart();
             actualizarBadgeCarrito(carrito);
