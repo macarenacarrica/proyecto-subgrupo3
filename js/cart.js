@@ -12,11 +12,27 @@ function getProductCost(productId) {
 // Ejemplo de uso
 const costoProducto1 = getProductCost(1); // Recupera el costo del producto con ID 1
 
-
 // Carrito
 document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el contenedor principal del carrito
     const container = document.querySelector(".container-carrito");
+
+    // Inicializa el carrito en localStorage si no existe y actualiza el badge
+    function inicializarCarrito() {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarBadgeCarrito(carrito);
+        return carrito;
+    }
+
+    // Actualiza el badge en el botón "Mi carrito" con el total de productos
+    function actualizarBadgeCarrito(carrito) {
+        const badge = document.getElementById('cart-badge');
+        if (badge) {
+            const totalProductos = carrito.reduce((suma, producto) => suma + producto.cantidad, 0);
+            badge.textContent = totalProductos;
+        }
+    }
 
     // Obtiene el ID del producto seleccionado desde el localStorage
     const productId = localStorage.getItem('selectedProductId');
@@ -25,110 +41,145 @@ document.addEventListener("DOMContentLoaded", function () {
     let productName = localStorage.getItem('productName');
     let productCost = localStorage.getItem('productCost');
     let productCurrency = localStorage.getItem('productCurrency');
-    let productImage = localStorage.getItem('carouselImage0'); 
+    let productImage = localStorage.getItem('carouselImage0');
 
-    // revisa si hay productos y realiza un fetch para obtenerlos
+    // Si el producto seleccionado está en el localStorage, intenta cargar los datos
     if (productName || productCost || productCurrency || productImage) {
         fetch(`https://japceibal.github.io/emercado-api/cats_products/101.json`)
             .then(response => response.json())
             .then(data => {
-                // Busca el producto en el JSON usando el ID almacenado en localStorage
                 const selectedProduct = data.products.find(product => product.id == productId);
                 
                 if (selectedProduct) {
-                    // Guarda los detalles del producto en localStorage como texto
-                    localStorage.setItem('productName', selectedProduct.name);
-                    localStorage.setItem('productCost', selectedProduct.cost);
-                    localStorage.setItem('productCurrency', selectedProduct.currency);
-                    localStorage.setItem('carouselImage0', selectedProduct.image);
-
-                    // Asigna los valores obtenidos a las variables
-                    productName = selectedProduct.name;
-                    productCost = selectedProduct.cost;
-                    productCurrency = selectedProduct.currency;
-                    productImage = selectedProduct.image;
-
-                    // Llama a la función para renderizar el carrito con los datos obtenidos
-                    renderCart(productName, productCost, productCurrency, productImage);
+                    agregarAlCarrito(selectedProduct);
+                    renderCart();
                 } else {
                     container.innerHTML = "<p>Tu carrito está vacío.</p>";
                 }
             });
     } else {
-        // Si los detalles ya están en localStorage, renderiza el carrito directamente
-        renderCart(productName, productCost, productCurrency, productImage);
+        renderCart();
+    }
+
+    // **Función para agregar el producto al carrito o actualizar cantidad si ya existe**
+    function agregarAlCarrito(product) {
+        let carrito = inicializarCarrito();
+        const productoExistente = carrito.find(p => p.id === product.id);
+
+        if (productoExistente) {
+            productoExistente.cantidad += 1;
+        } else {
+            carrito.push({
+                id: product.id,
+                name: product.name,
+                cost: product.cost,
+                currency: product.currency,
+                image: product.image,
+                cantidad: 1
+            });
+        }
+
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarBadgeCarrito(carrito);
     }
 
     // Función para renderizar el carrito
-    function renderCart(name, cost, currency, image) {
-        container.innerHTML = `
-            <button class="btn-clear-cart">
-                <i class="fa fa-trash"></i> Vaciar carrito
-            </button>
-            <br>
-            <h1>Detalles del Pedido</h1>
-            <div class="cart-item">
-                <img src="${image}" alt="${name}" class="product-image">
-                <div class="cart-details">
-                    <h5>${name}</h5>
-                    <div class="quantity-control">
-                        <button class="btn-quantity" onclick="decreaseQuantity()">-</button>
-                        <input type="text" id="quantity" value="1" readonly>
-                        <button class="btn-quantity" onclick="increaseQuantity()">+</button>
+    function renderCart() {
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        if (carrito.length === 0) {
+            container.innerHTML = "<p>Tu carrito está vacío.</p>";
+        } else {
+            container.innerHTML = `
+                <button class="btn-clear-cart" onclick="clearCart()">
+                    <i class="fa fa-trash"></i> Vaciar carrito
+                </button>
+                <br>
+                <h1>Detalles del Pedido</h1>
+            `;
+
+            carrito.forEach(producto => {
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${producto.image}" alt="${producto.name}" class="product-image">
+                        <div class="cart-details">
+                            <h5>${producto.name}</h5>
+                            <div class="quantity-control">
+                                <button class="btn-quantity" onclick="changeQuantity(${producto.id}, -1)">-</button>
+                                <input type="text" id="quantity-${producto.id}" value="${producto.cantidad}" readonly>
+                                <button class="btn-quantity" onclick="changeQuantity(${producto.id}, 1)">+</button>
+                            </div>
+                            <p>${producto.currency} <span id="subtotal-${producto.id}">${(producto.cost * producto.cantidad).toFixed(2)}</span></p>
+                        </div>
+                        <button class="btn-remove" onclick="removeFromCart(${producto.id})">×</button>
                     </div>
-                    <p>${currency} ${cost}</p>
+                `;
+            });
+
+            container.innerHTML += `
+                <div class="cart-summary">
+                    <p><strong>SUBTOTAL:</strong> <span id="subtotal">${calculateSubtotal(carrito)}</span></p>
+                    <p>¿En qué moneda quieres pagar?</p>
+                    <button class="btn-currency active" onclick="changeCurrency('USD')">USD</button>
+                    <button class="btn-currency" onclick="changeCurrency('UYU')">UYU</button>
+                    <p>¿Tienes un cupón de descuento?</p>
+                    <input type="text" class="discount-input" placeholder="INGRESA TU CODIGO" id="discountCode">
+                    <p><strong>TOTAL:</strong> <span id="total">${calculateSubtotal(carrito)}</span></p>
                 </div>
-                <button class="btn-remove" onclick="removeFromCart()">×</button>
-            </div>
-            <div class="cart-summary">
-                <p><strong>SUBTOTAL:</strong><span id="subtotal">${currency} ${cost}</span></p>
-                <p>¿En qué moneda quieres pagar?</p>
-                <button class="btn-currency active" onclick="changeCurrency('USD')">USD</button>
-                <button class="btn-currency" onclick="changeCurrency('UYU')">UYU</button>
-                <p>¿Tienes un cupón de descuento?</p>
-                <input type="text" class="discount-input" placeholder="INGRESA TU CODIGO" id="discountCode">
-                <p><strong>TOTAL:</strong> <span id="total">${currency} ${cost}</span></p>
-            </div>
-        `;
+                 <button class="btn-continue" onclick="window.location.href='categories.html'">Continuar comprando</button>
+            `;
+        }
     }
-// Función para aumentar la cantidad
-window.increaseQuantity = function () {
-    const quantityInput = document.getElementById("quantity");
-    let currentQuantity = parseInt(quantityInput.value);
-    quantityInput.value = currentQuantity + 1; // Incrementa la cantidad en 1
-    updateTotal(currentQuantity + 1);
-};
-
-// Función para disminuir la cantidad
-window.decreaseQuantity = function () {
-    const quantityInput = document.getElementById("quantity");
-    let currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity > 1) {
-        quantityInput.value = currentQuantity - 1; // Decrementa la cantidad en 1
-        updateTotal(currentQuantity - 1);
+      // ACTUALIZA EN TIEMPO REAL EL CARRITO//
+    function actualizarBadgeCarrito(carrito) {
+        const badge = document.getElementById('cart-count');
+        if (badge) {
+            const totalProductos = carrito.reduce((suma, producto) => suma + producto.cantidad, 0);
+            badge.textContent = totalProductos;
+            badge.classList.toggle("d-none", totalProductos === 0); // Oculta si está vacío
+        }
     }
-};
+    
 
-// Función para actualizar el total
-function updateTotal(quantity) {
-    const cost = parseFloat(localStorage.getItem('productCost')); // Obtén el costo del producto
-    const currency = localStorage.getItem('productCurrency');
-    const subtotalElement = document.getElementById("subtotal");
-    const totalElement = document.getElementById("total");
-    const newSubtotal = (cost * quantity).toFixed(2); // Calcula el nuevo subtotal
-    subtotalElement.textContent = `${currency} ${newSubtotal}`; 
-    totalElement.textContent = `${currency} ${newSubtotal}`;; 
-}
+    // **Función para calcular el subtotal del carrito**
+    function calculateSubtotal(carrito) {
+        return carrito.reduce((total, producto) => total + producto.cost * producto.cantidad, 0).toFixed(2);
+    }
 
-    // Función para vaciar el carrito
-    window.removeFromCart = function () {
-        localStorage.clear();
-        container.innerHTML = "<p>Tu carrito está vacío.</p>";
+    // **Función para cambiar la cantidad de un producto específico**
+    window.changeQuantity = function(productId, delta) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const producto = carrito.find(producto => producto.id === productId);
+
+        if (producto) {
+            producto.cantidad = Math.max(1, producto.cantidad + delta);
+            document.getElementById(`quantity-${productId}`).value = producto.cantidad; // Actualiza la cantidad en el campo de texto
+            document.getElementById(`subtotal-${productId}`).textContent = (producto.cost * producto.cantidad).toFixed(2); // Actualiza el subtotal
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            renderCart();
+            actualizarBadgeCarrito(carrito);
+        }
     };
 
-    // Función para cambiar la moneda
-    window.changeCurrency = function (currency) {
-        document.querySelectorAll(".btn-currency").forEach(btn => btn.classList.remove("active"));
-        document.querySelector(`.btn-currency[onclick="changeCurrency('${currency}')"]`).classList.add("active");
+    // **Función para eliminar un producto específico del carrito**
+    window.removeFromCart = function(productId) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito = carrito.filter(producto => producto.id !== productId);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        renderCart();
+        actualizarBadgeCarrito(carrito);
+        updateCartNotification(0); // Resetea la notificación del carrito
+    };
+
+    // **Función para vaciar el carrito**
+    window.clearCart = function() {
+        localStorage.removeItem('carrito');
+        renderCart();
+        actualizarBadgeCarrito([]);
     };
 });
+
+// Función para cambiar la moneda
+window.changeCurrency = function (currency) {
+    document.querySelectorAll(".btn-currency").forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`.btn-currency[onclick="changeCurrency('${currency}')"]`).classList.add("active");
+};
