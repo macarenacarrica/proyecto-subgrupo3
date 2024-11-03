@@ -1,3 +1,5 @@
+// Para ver en consola la información guardada en localStorage
+
 function getProductCost(productId) {
     const productCost = localStorage.getItem(`productCost_${productId}`);
     if (productCost) {
