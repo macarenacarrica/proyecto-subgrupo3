@@ -606,14 +606,52 @@ h1 {
 
 /*Estilo boton "continuar comprando"*/
 
-.btn-continue {
+.btn-continue, .btn-final{
   background-color: #90AC94;
   color: #fff;
   border: none; /* Sin borde */
   padding: 8px 12px; /* Espaciado */
   font-size: 14px; /* Tamaño de fuente */
   cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  margin-top: 20px; /* Espaciado superior */
+  margin-top: 20px; 
   border: 1px solid #333;
   border-radius: 2rem;
+}
+/* Select de envío y pago*/
+select {
+  padding: 12px 15px;      
+  border: 2px solid #497a58; 
+  border-radius: 8px;   
+  background-color: #fff;
+  font-size: 16px;  
+  color: #2f302f;   
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #007BFF;     /* Color de borde cuando está enfocado */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25); /* Sombra sutil cuando está enfocado */
+}
+select option {
+  padding: 10px;   
+  font-size: 16px;
+}
+/* Estilo para dirección de envío*/
+input[type="text"] {
+  padding: 12px 15px;   
+  border: 1px solid #6c9c7a;  
+  border-radius: 8px;   
+  background-color: #fff;   
+  font-size: 16px;  
+  color: #252424;      
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+input[type="text"]:focus {
+  border-color: #316649;  
+  box-shadow: 0 0 8px rgba(27, 27, 27, 0.25); /* Sombra suave */
+}
+input::placeholder {
+  color: #686666;             
+  font-style: italic;     
 }

@@ -11,9 +11,6 @@ function getProductCost(productId) {
     }
 }
 
-// Ejemplo de uso
-const costoProducto1 = getProductCost(1); // Recupera el costo del producto con ID 1
-
 // Carrito
 document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el contenedor principal del carrito
@@ -123,14 +120,42 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>¿En qué moneda quieres pagar?</p>
                     <button class="btn-currency active" onclick="changeCurrency('USD')">USD</button>
                     <button class="btn-currency" onclick="changeCurrency('UYU')">UYU</button>
-                    <p>¿Tienes un cupón de descuento?</p>
-                    <input type="text" class="discount-input" placeholder="INGRESA TU CODIGO" id="discountCode">
+
+                    <!-- Sección de Tipo de Envío -->
+                    <p><strong>Tipo de Envío:</strong></p>
+                    <select id="shippingType">
+                        <option value="premium" data-percentage="0.15">Premium 2 a 5 días (+15%)</option>
+                        <option value="express" data-percentage="0.07">Express 5 a 8 días (+7%)</option>
+                        <option value="standard" data-percentage="0.05">Standard 12 a 15 días (+5%)</option>
+                    </select>
+                    
+                    <!-- Sección de Dirección de Envío -->
+                    <p><strong>Dirección de Envío:</strong></p>
+                    <input type="text" class="address-input" placeholder="Departamento" id="department">
+                    <input type="text" class="address-input" placeholder="Localidad" id="locality">
+                    <input type="text" class="address-input" placeholder="Calle" id="street">
+                    <input type="text" class="address-input" placeholder="Número" id="number">
+                    <input type="text" class="address-input" placeholder="Esquina" id="corner">
+
+                     <!-- Sección de Forma de Pago -->
+                    <p><strong>Forma de Pago:</strong></p>
+                    <select id="paymentMethod">
+                        <option value="credit-card">Tarjeta de Crédito</option>
+                        <option value="bank-transfer">Tarjeta de débito</option>
+                        <option value="bank-transfer">Transferencia Bancaria</option>
+                    </select>
+
+                    <!-- Sección de Costo -->
+                    <p><strong>Costo de Envío:</strong> <span id="shippingCost">0</span></p>
                     <p><strong>TOTAL:</strong> <span id="total">${calculateSubtotal(carrito)}</span></p>
+
                 </div>
                  <button class="btn-continue" onclick="window.location.href='categories.html'">Continuar comprando</button>
+                 <button class="btn-final" >Finalizar compra</button>
             `;
         }
     }
+
       // ACTUALIZA EN TIEMPO REAL EL CARRITO//
     function actualizarBadgeCarrito(carrito) {
         const badge = document.getElementById('cart-count');
