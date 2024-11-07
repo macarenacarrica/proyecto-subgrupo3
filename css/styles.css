@@ -606,7 +606,7 @@ h1 {
 
 /*Estilo boton "continuar comprando"*/
 
-.btn-continue {
+.btn-continue, .btn-final{
   background-color: #90AC94;
   color: #fff;
   border: none; /* Sin borde */

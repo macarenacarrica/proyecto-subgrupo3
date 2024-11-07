@@ -11,9 +11,6 @@ function getProductCost(productId) {
     }
 }
 
-// Ejemplo de uso
-const costoProducto1 = getProductCost(1); // Recupera el costo del producto con ID 1
-
 // Carrito
 document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el contenedor principal del carrito
@@ -123,14 +120,82 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>¿En qué moneda quieres pagar?</p>
                     <button class="btn-currency active" onclick="changeCurrency('USD')">USD</button>
                     <button class="btn-currency" onclick="changeCurrency('UYU')">UYU</button>
-                    <p>¿Tienes un cupón de descuento?</p>
-                    <input type="text" class="discount-input" placeholder="INGRESA TU CODIGO" id="discountCode">
+
+                    <!-- Sección de Tipo de Envío -->
+                    <p><strong>Tipo de Envío:</strong></p>
+                    <select id="shippingType">
+                        <option value="premium" data-percentage="0.15">Premium 2 a 5 días (+15%)</option>
+                        <option value="express" data-percentage="0.07">Express 5 a 8 días (+7%)</option>
+                        <option value="standard" data-percentage="0.05">Standard 12 a 15 días (+5%)</option>
+                    </select>
+                    
+                    <!-- Sección de Dirección de Envío -->
+                    <p><strong>Dirección de Envío:</strong></p>
+                    <input type="text" class="address-input" placeholder="Departamento" id="department">
+                    <input type="text" class="address-input" placeholder="Localidad" id="locality">
+                    <input type="text" class="address-input" placeholder="Calle" id="street">
+                    <input type="text" class="address-input" placeholder="Número" id="number">
+                    <input type="text" class="address-input" placeholder="Esquina" id="corner">
+
+                     <!-- Sección de Forma de Pago -->
+                    <p><strong>Forma de Pago:</strong></p>
+                    <select id="paymentMethod" onchange="updateTotal()">
+                        <option value="credit-card">Tarjeta de Crédito</option>
+                        <option value="bank-transfer">Transferencia Bancaria</option>
+                    </select>
+
+                    <!-- Sección de Costo -->
+                    <p><strong>Costo de Envío:</strong> <span id="shippingCost">0</span></p>
                     <p><strong>TOTAL:</strong> <span id="total">${calculateSubtotal(carrito)}</span></p>
+
                 </div>
                  <button class="btn-continue" onclick="window.location.href='categories.html'">Continuar comprando</button>
+                 <button class="btn-final" >Finalizar compra</button>
             `;
         }
     }
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtener el contenedor del carrito desde localStorage
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    
+        // Sección de Tipo de Envío
+        const shippingSelect = document.getElementById("shippingType");
+        
+        // Cuando el tipo de envío cambia, se actualiza el total en tiempo real
+        shippingSelect.addEventListener("change", updateTotal);
+          // Función para calcular el subtotal de todos los productos del carrito
+          function calculateSubtotal(carrito) {
+            return carrito.reduce((total, item) => total + item.cost * item.cantidad, 0);
+        }
+        // Función para actualizar el total con el costo de envío
+        function updateTotal() {
+            const subtotal = calculateSubtotal(carrito);
+    
+            // Obtener el tipo de envío seleccionado
+            const shippingType = shippingSelect.value;
+            
+            // Obtener el porcentaje de costo de envío del tipo seleccionado
+            const shippingPercentage = parseFloat(document.querySelector(`#shippingType option[value="${shippingType}"]`).getAttribute("data-percentage"));
+        
+            // Calcular el costo de envío
+            const shippingCost = subtotal * shippingPercentage;
+        
+            // Calcular el total final
+            const total = subtotal + shippingCost;
+        
+            // Actualizar los valores en el DOM
+            document.getElementById('shippingCost').textContent = shippingCost.toFixed(2);  // Costo de envío
+            document.getElementById('total').textContent = total.toFixed(2);  // Total
+        }
+        
+      
+    
+        // Inicializar el cálculo del total cuando la página carga
+        updateTotal();
+
+        renderCart();
+     });
+    
       // ACTUALIZA EN TIEMPO REAL EL CARRITO//
     function actualizarBadgeCarrito(carrito) {
         const badge = document.getElementById('cart-count');
