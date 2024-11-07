@@ -139,8 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                      <!-- Sección de Forma de Pago -->
                     <p><strong>Forma de Pago:</strong></p>
-                    <select id="paymentMethod" onchange="updateTotal()">
+                    <select id="paymentMethod">
                         <option value="credit-card">Tarjeta de Crédito</option>
+                        <option value="bank-transfer">Tarjeta de débito</option>
                         <option value="bank-transfer">Transferencia Bancaria</option>
                     </select>
 
@@ -154,48 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
         }
     }
-    document.addEventListener("DOMContentLoaded", function () {
-        // Obtener el contenedor del carrito desde localStorage
-        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-        // Sección de Tipo de Envío
-        const shippingSelect = document.getElementById("shippingType");
-        
-        // Cuando el tipo de envío cambia, se actualiza el total en tiempo real
-        shippingSelect.addEventListener("change", updateTotal);
-          // Función para calcular el subtotal de todos los productos del carrito
-          function calculateSubtotal(carrito) {
-            return carrito.reduce((total, item) => total + item.cost * item.cantidad, 0);
-        }
-        // Función para actualizar el total con el costo de envío
-        function updateTotal() {
-            const subtotal = calculateSubtotal(carrito);
-    
-            // Obtener el tipo de envío seleccionado
-            const shippingType = shippingSelect.value;
-            
-            // Obtener el porcentaje de costo de envío del tipo seleccionado
-            const shippingPercentage = parseFloat(document.querySelector(`#shippingType option[value="${shippingType}"]`).getAttribute("data-percentage"));
-        
-            // Calcular el costo de envío
-            const shippingCost = subtotal * shippingPercentage;
-        
-            // Calcular el total final
-            const total = subtotal + shippingCost;
-        
-            // Actualizar los valores en el DOM
-            document.getElementById('shippingCost').textContent = shippingCost.toFixed(2);  // Costo de envío
-            document.getElementById('total').textContent = total.toFixed(2);  // Total
-        }
-        
-      
-    
-        // Inicializar el cálculo del total cuando la página carga
-        updateTotal();
 
-        renderCart();
-     });
-    
       // ACTUALIZA EN TIEMPO REAL EL CARRITO//
     function actualizarBadgeCarrito(carrito) {
         const badge = document.getElementById('cart-count');
