@@ -10,7 +10,6 @@ function getProductCost(productId) {
         return null;
     }
 }
-
 // Carrito
 document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el contenedor principal del carrito
@@ -166,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     
-
     // **Función para calcular el subtotal del carrito**
     function calculateSubtotal(carrito) {
         return 'USD ' + (carrito.reduce((total, producto) => total + producto.cost * producto.cantidad, 0).toFixed(2));
