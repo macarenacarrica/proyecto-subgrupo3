@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function actualizarBadgeCarrito(carrito) {
-        const badge = document.getElementById('cart-badge');
+        const badge = document.getElementById('cart-count');
         if (badge) {
             const totalProductos = carrito.reduce((suma, producto) => suma + producto.cantidad, 0);
             badge.textContent = totalProductos;
@@ -114,6 +114,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     <input type="text" class="address-input" placeholder="Número" id="number">
                     <input type="text" class="address-input" placeholder="Esquina" id="corner">
 
+                    <p><strong>Forma de Pago:</strong></p>
+                    <select id="paymentMethod">
+                        <option value="">Seleccionar forma de pago</option>
+                        <option value="credit-card">Tarjeta de Crédito</option>
+                        <option value="bank-transfer">Transferencia Bancaria</option>
+                    </select>
+                    <div class="payment-fields">
+                        <input type="text" class="payment-input" placeholder="Número de tarjeta" id="cardNumber" style="display: none;">
+                        <input type="text" class="payment-input" placeholder="Fecha de vencimiento" id="expiryDate" style="display: none;">
+                        <input type="text" class="payment-input" placeholder="CVV" id="cvv" style="display: none;">
+                        <input type="text" class="payment-input" placeholder="Número de cuenta" id="accountNumber" style="display: none;">
+                    </div>
+
                     <p><strong>Costo de Envío:</strong> <span>USD <span id="shippingCost">0.00</span></span></p>
                     <p><strong>TOTAL:</strong> <span>USD <span id="total">0.00</span></span></p>
 
@@ -123,7 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             document.getElementById("shippingType").addEventListener("change", updateShippingCost);
-            updateShippingCost(); // Inicializar costo de envío
+            updateShippingCost();
+            document.getElementById("paymentMethod").addEventListener("change", togglePaymentFields);
+            document.querySelector(".btn-final").addEventListener("click", finalizarCompra);
         }
     }
 
@@ -145,6 +160,76 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateTotal(subtotal, shippingCost) {
         const total = subtotal + shippingCost;
         document.getElementById("total").textContent = total.toFixed(2);
+    }
+
+    function togglePaymentFields() {
+        const paymentMethod = document.getElementById("paymentMethod").value;
+        document.querySelectorAll(".payment-input").forEach(input => input.style.display = "none");
+
+        if (paymentMethod === "credit-card") {
+            document.getElementById("cardNumber").style.display = "block";
+            document.getElementById("expiryDate").style.display = "block";
+            document.getElementById("cvv").style.display = "block";
+        } else if (paymentMethod === "bank-transfer") {
+            document.getElementById("accountNumber").style.display = "block";
+        }
+    }
+
+    function finalizarCompra() {
+        if (validarCompra()) {
+            alert("¡Compra realizada con éxito!");
+        }
+    }
+
+    function validarCompra() {
+        const department = document.getElementById("department").value.trim();
+        const locality = document.getElementById("locality").value.trim();
+        const street = document.getElementById("street").value.trim();
+        const number = document.getElementById("number").value.trim();
+        const corner = document.getElementById("corner").value.trim();
+
+        if (!department || !locality || !street || !number || !corner) {
+            alert("Por favor, completa todos los campos de dirección de envío.");
+            return false;
+        }
+
+        const shippingType = document.getElementById("shippingType").value;
+        if (!shippingType) {
+            alert("Por favor, selecciona un tipo de envío.");
+            return false;
+        }
+
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        for (let producto of carrito) {
+            if (producto.cantidad <= 0) {
+                alert(`La cantidad para el producto "${producto.name}" debe ser mayor a 0.`);
+                return false;
+            }
+        }
+
+        const paymentMethod = document.getElementById("paymentMethod").value;
+        if (!paymentMethod) {
+            alert("Por favor, selecciona una forma de pago.");
+            return false;
+        }
+
+        if (paymentMethod === "credit-card") {
+            const cardNumber = document.getElementById("cardNumber").value.trim();
+            const expiryDate = document.getElementById("expiryDate").value.trim();
+            const cvv = document.getElementById("cvv").value.trim();
+            if (!cardNumber || !expiryDate || !cvv) {
+                alert("Por favor, completa todos los campos de la tarjeta de crédito.");
+                return false;
+            }
+        } else if (paymentMethod === "bank-transfer") {
+            const accountNumber = document.getElementById("accountNumber").value.trim();
+            if (!accountNumber) {
+                alert("Por favor, ingresa el número de cuenta para la transferencia bancaria.");
+                return false;
+            }
+        }
+
+        return true;
     }
 
     window.changeQuantity = function (productId, delta) {
@@ -172,11 +257,5 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem('carrito');
         renderCart();
         actualizarBadgeCarrito([]);
-    };
-
-    window.changeCurrency = function (currency) {
-        document.querySelectorAll(".btn-currency").forEach(btn => btn.classList.remove("active"));
-        document.querySelector(`.btn-currency[onclick="changeCurrency('${currency}')"]`).classList.add("active");
-        // Aquí puedes agregar lógica para cambiar los precios a la moneda seleccionada si tienes el tipo de cambio.
     };
 });
