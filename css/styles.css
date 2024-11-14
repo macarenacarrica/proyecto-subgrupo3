@@ -655,3 +655,35 @@ input::placeholder {
   color: #686666;             
   font-style: italic;     
 }
+
+.cart-summary p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.cart-summary p strong {
+  margin-right: 5px;
+}
+
+.cart-summary span {
+  display: inline-block;
+}
+.cart-summary p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.cart-summary p strong {
+  margin-right: 5px;
+}
+
+.cart-summary span {
+  display: inline-block;
+}
+
