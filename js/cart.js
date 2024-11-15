@@ -1,27 +1,31 @@
+// Espera a que todo el contenido del DOM esté cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.querySelector(".container-carrito");
 
+    // Inicializa el carrito y actualiza el badge de cantidad
     function inicializarCarrito() {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         localStorage.setItem('carrito', JSON.stringify(carrito));
         actualizarBadgeCarrito(carrito);
         return carrito;
     }
-
+        // Actualiza el badge de cantidad de productos en el carrito
     function actualizarBadgeCarrito(carrito) {
-        const badge = document.getElementById('cart-count');
+        const badge = document.getElementById('cart-count'); // Elemento del badge
         if (badge) {
             const totalProductos = carrito.reduce((suma, producto) => suma + producto.cantidad, 0);
-            badge.textContent = totalProductos;
+            badge.textContent = totalProductos; // Muestra el total en el badge
         }
     }
-
+     
+     // Obtiene el ID y otros detalles del producto seleccionado de localStorage
     const productId = localStorage.getItem('selectedProductId');
     let productName = localStorage.getItem('productName');
     let productCost = localStorage.getItem('productCost');
     let productCurrency = localStorage.getItem('productCurrency');
     let productImage = localStorage.getItem('carouselImage0');
 
+    // Si hay información del producto, intenta cargarlo desde el JSON y añadirlo al carrito
     if (productName || productCost || productCurrency || productImage) {
         fetch(`https://japceibal.github.io/emercado-api/cats_products/101.json`)
             .then(response => response.json())
@@ -29,24 +33,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 const selectedProduct = data.products.find(product => product.id == productId);
                 
                 if (selectedProduct) {
-                    agregarAlCarrito(selectedProduct);
-                    renderCart();
+                    agregarAlCarrito(selectedProduct); // Agrega el producto al carrito
+                    renderCart(); // Muestra el carrito actualizado
                 } else {
-                    container.innerHTML = "<p>Tu carrito está vacío.</p>";
+                    container.innerHTML = "<p>Tu carrito está vacío.</p>"; // Mensaje si no hay producto
                 }
             });
     } else {
-        renderCart();
+        renderCart();// Renderiza el carrito si no hay producto seleccionado
     }
 
+    // Añade un producto al carrito
     function agregarAlCarrito(product) {
         let carrito = inicializarCarrito();
-        const productoExistente = carrito.find(p => p.id === product.id);
+        const productoExistente = carrito.find(p => p.id === product.id);// Verifica si el producto ya existe
 
         if (productoExistente) {
-            productoExistente.cantidad += 1;
+            productoExistente.cantidad += 1;// Incrementa la cantidad si ya existe
         } else {
-            carrito.push({
+            carrito.push({ // Añade el nuevo producto con cantidad inicial de 1
                 id: product.id,
                 name: product.name,
                 cost: product.cost,
@@ -56,15 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-        actualizarBadgeCarrito(carrito);
+        localStorage.setItem('carrito', JSON.stringify(carrito)); // Guarda el carrito actualizado en localStorage
+        actualizarBadgeCarrito(carrito);// Actualiza el badge
     }
-
+    // Muestra el carrito en el contenedor HTML
     function renderCart() {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         if (carrito.length === 0) {
             container.innerHTML = "<p>Tu carrito está vacío.</p>";
         } else {
+            // Contenido inicial del carrito
             container.innerHTML = `
                 <button class="btn-clear-cart" onclick="clearCart()">
                     <i class="fa fa-trash"></i> Vaciar carrito
@@ -72,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <br>
                 <h1>Detalles del Pedido</h1>
             `;
-
+            // Añade cada producto del carrito al contenedor
             carrito.forEach(producto => {
                 container.innerHTML += `
                     <div class="cart-item">
@@ -91,8 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             });
 
-            const subtotal = calculateSubtotal(carrito);
-
+            const subtotal = calculateSubtotal(carrito); // Calcula el subtotal del carrito
+            
+            // Añade el resumen de costos y opciones adicionales
             container.innerHTML += `
                 <div class="cart-summary">
                     <p><strong>SUBTOTAL:</strong> <span> USD <span id="subtotal">${subtotal.toFixed(2)}</span></p>
@@ -134,18 +141,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="btn-continue" onclick="window.location.href='categories.html'">Continuar comprando</button>
                 <button class="btn-final">Finalizar compra</button>
             `;
-
+             // Añade eventos para cambio de costo de envío y forma de pago
             document.getElementById("shippingType").addEventListener("change", updateShippingCost);
-            updateShippingCost();
+            updateShippingCost();// Actualiza el costo de envío
             document.getElementById("paymentMethod").addEventListener("change", togglePaymentFields);
             document.querySelector(".btn-final").addEventListener("click", finalizarCompra);
         }
     }
-
+     // Calcula el subtotal del carrito
     function calculateSubtotal(carrito) {
         return carrito.reduce((total, producto) => total + producto.cost * producto.cantidad, 0);
     }
-
+     // Actualiza el costo de envío basado en el tipo de envío seleccionado
     function updateShippingCost() {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         const shippingSelect = document.getElementById("shippingType");
@@ -156,12 +163,12 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("shippingCost").textContent = shippingCost.toFixed(2);
         updateTotal(subtotal, shippingCost);
     }
-
+     // Actualiza el total (subtotal + costo de envío)
     function updateTotal(subtotal, shippingCost) {
         const total = subtotal + shippingCost;
         document.getElementById("total").textContent = total.toFixed(2);
     }
-
+    // Cambia los campos de pago según la forma de pago seleccionada
     function togglePaymentFields() {
         const paymentMethod = document.getElementById("paymentMethod").value;
         document.querySelectorAll(".payment-input").forEach(input => input.style.display = "none");
@@ -174,13 +181,13 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("accountNumber").style.display = "block";
         }
     }
-
+    // Finaliza la compra si se han validado todos los datos
     function finalizarCompra() {
         if (validarCompra()) {
             alert("¡Compra realizada con éxito!");
         }
     }
-
+    // Valida los campos obligatorios antes de finalizar la compra
     function validarCompra() {
         const department = document.getElementById("department").value.trim();
         const locality = document.getElementById("locality").value.trim();
@@ -231,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return true;
     }
-
+    // Función para cambiar la cantidad de un producto específico
     window.changeQuantity = function (productId, delta) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         const producto = carrito.find(producto => producto.id === productId);
@@ -244,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
             renderCart();
         }
     };
-
+   //Función para eliminar un producto específico del carrito
     window.removeFromCart = function (productId) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         carrito = carrito.filter(producto => producto.id !== productId);
@@ -253,9 +260,16 @@ document.addEventListener("DOMContentLoaded", function () {
         actualizarBadgeCarrito(carrito);
     };
 
+    // Función para vaciar el carrito
     window.clearCart = function () {
         localStorage.removeItem('carrito');
         renderCart();
         actualizarBadgeCarrito([]);
     };
 });
+
+// Función para cambiar la moneda
+window.changeCurrency = function (currency) {
+    document.querySelectorAll(".btn-currency").forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`.btn-currency[onclick="changeCurrency('${currency}')"]`).classList.add("active");
+};
