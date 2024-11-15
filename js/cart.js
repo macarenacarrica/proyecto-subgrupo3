@@ -232,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("¡Compra realizada con éxito!");
         }
     }
+    
     // Función para cambiar la cantidad de un producto específico
     window.changeQuantity = function (productId, delta) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
