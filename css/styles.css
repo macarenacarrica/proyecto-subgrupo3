@@ -593,17 +593,6 @@ h1 {
   background-color: #4caf50;
   color: #fff;
 }
-
-/* Input de cupón */
-.discount-input {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
 /*Estilo boton "continuar comprando"*/
 
 .btn-continue, .btn-final{
