@@ -181,12 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("accountNumber").style.display = "block";
         }
     }
-    // Finaliza la compra si se han validado todos los datos
-    function finalizarCompra() {
-        if (validarCompra()) {
-            alert("¡Compra realizada con éxito!");
-        }
-    }
+    
     // Valida los campos obligatorios antes de finalizar la compra
     function validarCompra() {
         const department = document.getElementById("department").value.trim();
@@ -204,14 +199,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!shippingType) {
             alert("Por favor, selecciona un tipo de envío.");
             return false;
-        }
-
-        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        for (let producto of carrito) {
-            if (producto.cantidad <= 0) {
-                alert(`La cantidad para el producto "${producto.name}" debe ser mayor a 0.`);
-                return false;
-            }
         }
 
         const paymentMethod = document.getElementById("paymentMethod").value;
@@ -237,6 +224,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         return true;
+    }
+
+    // Finaliza la compra si se han validado todos los datos
+    function finalizarCompra() {
+        if (validarCompra()) {
+            alert("¡Compra realizada con éxito!");
+        }
     }
     // Función para cambiar la cantidad de un producto específico
     window.changeQuantity = function (productId, delta) {
